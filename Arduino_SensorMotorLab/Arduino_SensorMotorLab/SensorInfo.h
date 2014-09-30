@@ -1,5 +1,5 @@
-#ifndef ARDUINO_SENSORMOTORLAB_SENSORREADINGINFO_H
-#define ARDUINO_SENSORMOTORLAB_SENSORREADINGINFO_H
+#ifndef ARDUINO_SENSORMOTORLAB_SENSORINFO_H
+#define ARDUINO_SENSORMOTORLAB_SENSORINFO_H
 
 #include <Arduino.h>
 #include "Misc.h"
@@ -7,7 +7,7 @@
 /*
 Provides information about the readings that come from a particular sensor.
 */
-struct SensorReadingInfo {
+struct SensorInfo {
   // The units of the readings. The main code will complain if a given sensor returns units that
   // aren't the expected units (e.g. the force sensor returns meters).
   Units units;
@@ -21,6 +21,6 @@ struct SensorReadingInfo {
   int minReading;
 };
 
-#endif /* ARDUINO_SENSORMOTORLAB_SENSORREADINGINFO_H */
+#endif /* ARDUINO_SENSORMOTORLAB_SENSORINFO_H */
 
   

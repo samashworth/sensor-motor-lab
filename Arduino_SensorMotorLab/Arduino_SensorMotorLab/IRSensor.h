@@ -1,12 +1,12 @@
-#ifndef ARDUINO_SENSORMOTORLAB_RANGESENSOR_H
-#define ARDUINO_SENSORMOTORLAB_RANGESENSOR_H
+#ifndef ARDUINO_SENSORMOTORLAB_IRSENSOR_H
+#define ARDUINO_SENSORMOTORLAB_IRSENSOR_H
 
 #include "Sensor.h"
 
 /*
 Represents a range sensor.
 */
-class RangeSensor : public Sensor {
+class IRSensor : public Sensor {
   public:
     virtual void initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[]);
 
@@ -14,11 +14,11 @@ class RangeSensor : public Sensor {
 
     virtual byte getRelativeReading();
 
-    virtual SensorReadingInfo getSensorReadingInfo();
+    virtual SensorInfo getSensorInfo();
 
     virtual void doProcessing();
 };
 
-#endif /* ARDUINO_SENSORMOTORLAB_RANGESENSOR_H */
+#endif /* ARDUINO_SENSORMOTORLAB_IRSENSOR_H */
 
 

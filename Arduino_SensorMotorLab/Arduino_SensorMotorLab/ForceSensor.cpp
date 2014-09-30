@@ -18,15 +18,15 @@ byte ForceSensor::getRelativeReading()
   return 0;
 }
 
-SensorReadingInfo ForceSensor::getSensorReadingInfo() 
+SensorInfo ForceSensor::getSensorInfo() 
 {
   // TODO @Sowmya: Implement this.
-  SensorReadingInfo sensorReadingInfo;
-  sensorReadingInfo.units = NEWTON;
-  sensorReadingInfo.minReading = 0;
-  sensorReadingInfo.maxReading = 0;
+  SensorInfo SensorInfo;
+  SensorInfo.units = NEWTON;
+  SensorInfo.minReading = 0;
+  SensorInfo.maxReading = 0;
   
-  return sensorReadingInfo;
+  return SensorInfo;
 }
 
 void ForceSensor::doProcessing()

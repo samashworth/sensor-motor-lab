@@ -11,13 +11,15 @@ class Motor {
     /*
     Initializes the motor. 
     Parameters:
+	  numPins:
+		  The number of pins allocated to this motor. 
       pinIds: 
           The ids of the pins allocated to this motor. The motor can use these pins as
-          it wishes. This method will return false if too few or too many pins are allocated
-          to the motor.
+          it wishes.
+	  numInterrupts:
+	      The number of interrupts allocated to this motor.
       interruptIds: 
-          The interrupt ids allocated to the motor. Can be null. This method will return 
-          false if too few or too many interrupts are allocated to the motor.
+          The interrupt ids allocated to the motor.
     */
     virtual void initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[]);
     

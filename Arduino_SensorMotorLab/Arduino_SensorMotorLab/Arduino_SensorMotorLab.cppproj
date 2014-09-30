@@ -245,10 +245,10 @@
     <Compile Include="Motor.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="RangeSensor.cpp">
+    <Compile Include="IRSensor.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="RangeSensor.h">
+    <Compile Include="IRSensor.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="RCServoMotor.cpp">
@@ -260,7 +260,13 @@
     <Compile Include="Sensor.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="SensorReadingInfo.h">
+    <Compile Include="SensorInfo.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SonarSensor.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SonarSensor.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="StepperMotor.cpp">

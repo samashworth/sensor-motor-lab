@@ -2,7 +2,7 @@
 #define ARDUINO_SENSORMOTORLAB_SENSOR_H
 
 #include <Arduino.h>
-#include "SensorReadingInfo.h"
+#include "SensorInfo.h"
 
 /*
 Represents a sensor. Facilitates reading the sensor.
@@ -12,13 +12,15 @@ class Sensor {
     /*
     Initializes the sensor. 
     Parameters:
-      pinIds: 
-          The ids of the pins allocated to this sensor. The sensor can use these pins as
-          it wishes. This method will return false if too few or too many pins are allocated
-          to the sensor.
-      interruptIds: 
-          The interrupt ids allocated to the sensor. Can be null. This method will return 
-          false if too few or too many interrupts are allocated to the sensor.
+		numPins:
+			The number of pins allocated to this sensor.
+		pinIds:
+			The ids of the pins allocated to this sensor. The sensor can use these pins as
+		it wishes.
+		numInterrupts:
+			The number of interrupts allocated to this sensor.
+		interruptIds:
+			The interrupt ids allocated to the sensor.
     */
     virtual void initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[]);
     
@@ -39,11 +41,11 @@ class Sensor {
     Returns info about the readings produced by this sensor. This includes the units of the readings and the minimum
 	and maximum possible readings.
     */
-    virtual SensorReadingInfo getSensorReadingInfo();
+    virtual SensorInfo getSensorInfo();
     
     
     /*
-    Allows the senso code to do any processing it needs to do, such as reading pins and updating internal
+    Allows the sensor code to do any processing it needs to do, such as reading pins and updating internal
     variables. This method will be called once on every iteration of the main Arduino loop.
     */
     virtual void doProcessing();

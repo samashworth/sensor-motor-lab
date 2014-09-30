@@ -14,7 +14,7 @@ class Thermistor : public Sensor {
 
     virtual byte getRelativeReading();
 
-    virtual SensorReadingInfo getSensorReadingInfo();
+    virtual SensorInfo getSensorInfo();
 
     virtual void doProcessing();
 };

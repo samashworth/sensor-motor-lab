@@ -17,14 +17,14 @@ byte DummySensor::getRelativeReading()
 	return reading++ % 3;
 }
 
-SensorReadingInfo DummySensor::getSensorReadingInfo() 
+SensorInfo DummySensor::getSensorInfo() 
 {
-  SensorReadingInfo sensorReadingInfo;
-  sensorReadingInfo.units = CELSIUS;
-  sensorReadingInfo.minReading = 0;
-  sensorReadingInfo.maxReading = 0;
+  SensorInfo SensorInfo;
+  SensorInfo.units = CELSIUS;
+  SensorInfo.minReading = 0;
+  SensorInfo.maxReading = 0;
   
-  return sensorReadingInfo;
+  return SensorInfo;
 }
 
 void DummySensor::doProcessing()

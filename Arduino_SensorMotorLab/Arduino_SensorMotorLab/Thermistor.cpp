@@ -19,15 +19,15 @@ byte Thermistor::getRelativeReading()
   return 0;
 }
 
-SensorReadingInfo Thermistor::getSensorReadingInfo() 
+SensorInfo Thermistor::getSensorInfo() 
 {
   // TODO @Erin: Implement this.
-  SensorReadingInfo sensorReadingInfo;
-  sensorReadingInfo.units = CELSIUS;
-  sensorReadingInfo.minReading = 0;
-  sensorReadingInfo.maxReading = 0;
+  SensorInfo SensorInfo;
+  SensorInfo.units = CELSIUS;
+  SensorInfo.minReading = 0;
+  SensorInfo.maxReading = 0;
   
-  return sensorReadingInfo;
+  return SensorInfo;
 }
 
 void Thermistor::doProcessing()
