@@ -19,22 +19,25 @@ class Sensor {
       interruptIds: 
           The interrupt ids allocated to the sensor. Can be null. This method will return 
           false if too few or too many interrupts are allocated to the sensor.
-      errorMessage:
-          If initialization is unsuccessful, errorMessage should be set to an explanatory
-          message that will be displayed to the user.
-    Return Value: True if initialization is successful and False otherwise.
     */
-    virtual boolean initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[], String* errorMessage);
+    virtual void initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[]);
     
     /*
-    Returns the current reading from the sensor.
+    Returns the current reading from the sensor, in the units measured by the sensor. For example, on a force sensor,
+    this function will return a value in newtons.
     */
-    virtual int getReading();
+    virtual float getReading();
     
     /*
-    Returns info about the readings produced by this sensor. This includes the units of the readings,
-    the minimum and maximum possible readings, and the scale factor that a consumer of the readings should apply
-    to the readings.
+    Returns the current reading from the sensor, relative to the sensor's complete range. For example, if the sensor is
+    a force sensor and the range of values is expected to be between 0 newtons and 700 newtons and the current reading
+    of the sensor is 400 newtons, then this function will return 400 * 255 / 700 = 145.
+    */
+    virtual byte getRelativeReading();
+    
+    /*
+    Returns info about the readings produced by this sensor. This includes the units of the readings and the minimum
+	and maximum possible readings.
     */
     virtual SensorReadingInfo getSensorReadingInfo();
     
@@ -42,12 +45,8 @@ class Sensor {
     /*
     Allows the senso code to do any processing it needs to do, such as reading pins and updating internal
     variables. This method will be called once on every iteration of the main Arduino loop.
-    Return Value: True if processing was successful and False otherwise.
-    Parameters:
-      errorMessage:
-          If an error occurs, errorMessage should be set to an explanatory message that will be displayed to the user.
     */
-    virtual boolean doProcessing(String* errorMessage);
+    virtual void doProcessing();
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_SENSOR_H */

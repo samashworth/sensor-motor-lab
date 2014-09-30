@@ -1,0 +1,8 @@
+#ifndef ARDUINO_SENSORMOTORLAB_MOTORINFO_H
+#define ARDUINO_SENSORMOTORLAB_MOTORINFO_H
+
+struct MotorInfo {
+	int maxAbsoluteSpeed;
+}
+
+#endif /* ARDUINO_SENSORMOTORLAB_MOTORINFO_H */
