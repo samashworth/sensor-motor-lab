@@ -8,6 +8,7 @@ void ForceSensor::initialize(int numPins, int pinIds[], int numInterrupts, int i
 
 float ForceSensor::getReading()
 {
+  testVar = 5;
   // TODO @Sowmya: Implement this.
   return 0.0;
 }

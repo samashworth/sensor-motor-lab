@@ -72,7 +72,7 @@ void loop() {
 			dummyMotor.setSpeed(0);
 		}
 		else {
-			// TODO @Sam: Determine appropriate angle.
+			// TODO @Sam: Determine appropriate angle. Test change.
 			dummyMotor.setAngle(0);
 		}
 	}
