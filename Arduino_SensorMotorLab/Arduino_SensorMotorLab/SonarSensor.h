@@ -18,8 +18,6 @@ class SonarSensor : public Sensor {
 
 	virtual void doProcessing();
 	
-	virtual PeripheralType getPeripheralType() { return SONAR_SENSOR; }
-	
   private:
 	// If you want, you can put variables here so that you can remember data from one call to the next.
 	int sonarPin;
