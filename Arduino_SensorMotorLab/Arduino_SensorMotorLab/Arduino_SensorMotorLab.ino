@@ -13,6 +13,7 @@
 #include "SonarSensor.h"
 #include "Thermistor.h"
 #include "DummySensor.h"
+#include <Servo.h>
 
 #include "Messenger.h"
 #include "Misc.h"

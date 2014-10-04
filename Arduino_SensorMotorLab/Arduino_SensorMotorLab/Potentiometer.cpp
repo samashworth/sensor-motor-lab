@@ -22,7 +22,7 @@ SensorInfo Potentiometer::getSensorInfo()
 {
   // TODO @Sonali: Implement this.
   SensorInfo SensorInfo;
-  SensorInfo.units = METER;
+  SensorInfo.units = CENTIMETER;
   SensorInfo.minReading = 0;
   SensorInfo.maxReading = 0;
   

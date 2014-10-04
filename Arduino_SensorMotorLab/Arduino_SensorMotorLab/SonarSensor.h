@@ -22,7 +22,11 @@ class SonarSensor : public Sensor {
 	
   private:
 	// If you want, you can put variables here so that you can remember data from one call to the next.
-	byte testVar;
+	int sonarPin;
+        int runningAverageRaw;
+        int rollingAverageLength;
+        int maxRange;
+        int smooth[3];
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_SONARSENSOR_H */
