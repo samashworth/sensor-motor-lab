@@ -8,7 +8,7 @@
 
 #include "Sensor.h"
 #include "ForceSensor.h"
-#include "IRSensor.h"
+#include "Potentiometer.h"
 #include "Thermistor.h"
 #include "DummySensor.h"
 
@@ -22,7 +22,7 @@ DummyMotor dummyMotor;
 
 // Sensors
 ForceSensor forceSensor;
-IRSensor IRSensor;
+Potentiometer Potentiometer;
 Thermistor thermistor;
 DummySensor dummySensor;
 

@@ -245,10 +245,13 @@
     <Compile Include="Motor.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="IRSensor.cpp">
+    <Compile Include="Potentiometer.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="IRSensor.h">
+    <Compile Include="Potentiometer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MotorInfo.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="RCServoMotor.cpp">

@@ -18,7 +18,11 @@ class DummyMotor : public Motor {
 	
     virtual void setAngle(int deg);
 	
-    virtual void doProcessing(); 
+    virtual void doProcessing();
+    
+  private:
+    // If you want, you can put variables here so that you can remember data from one call to the next.
+    byte testVar;
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_DUMMYMOTOR_H */

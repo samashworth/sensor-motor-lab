@@ -1,12 +1,12 @@
-#ifndef ARDUINO_SENSORMOTORLAB_THERMISTOR_H
-#define ARDUINO_SENSORMOTORLAB_THERMISTOR_H
+#ifndef ARDUINO_SENSORMOTORLAB_Potentiometer_H
+#define ARDUINO_SENSORMOTORLAB_Potentiometer_H
 
 #include "Sensor.h"
 
 /*
-Represents a thermistor.
+Represents a range sensor.
 */
-class Thermistor : public Sensor {
+class Potentiometer : public Sensor {
   public:
     virtual void initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[]);
 
@@ -23,6 +23,6 @@ class Thermistor : public Sensor {
     byte testVar;
 };
 
-#endif /* ARDUINO_SENSORMOTORLAB_THERMISTOR_H */
+#endif /* ARDUINO_SENSORMOTORLAB_Potentiometer_H */
 
 
