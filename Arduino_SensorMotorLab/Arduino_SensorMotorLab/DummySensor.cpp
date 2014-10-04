@@ -1,10 +1,12 @@
 #include "DummySensor.h"
 #include "Misc.h"
+#include "Messenger.h"
 
 int reading = 0;
 
 void DummySensor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
+  Messenger::reportError("This is a test error");
 }
 
 float DummySensor::getReading()

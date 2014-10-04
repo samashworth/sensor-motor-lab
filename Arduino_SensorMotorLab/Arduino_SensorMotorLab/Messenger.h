@@ -5,7 +5,7 @@
 
 class Messenger {
   public:
-    void reportError(String message);
+    static void reportError(String message);
 };
 
 
