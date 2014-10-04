@@ -18,6 +18,7 @@
 #include "Messenger.h"
 #include "Misc.h"
 #include "Button.h"
+#include "SensorMotorBinding.h"
 
 // Motors
 #define MOTOR_COUNT 4
@@ -39,12 +40,17 @@ Sensor* sensors[] = { &forceSensor, &potentiometer, &sonarSensor, &thermistor, &
 // Button
 Button button;
 
+// Other objects
+Message message;
+SensorMotorBinding sensorMotorBindings[MOTOR_COUNT];
+
 long lastSensorPollTime;
 int sensorPollingInterval_ms = 1000; // milliseconds
-Message message;
+
+#define MAX_RELATIVE_READING 255
 
 
-void setup() {
+void setup() { 
   // Initiate communications with client.
   Messenger::initialize();
   
@@ -65,10 +71,22 @@ void setup() {
 	pinIds[0] = 6;
 	pinIds[1] = 8;
 	dummySensor.initialize(2, pinIds, 0, interruptIds);
+  
+  // Setup the sensor/motor bindings.
+  for (int i = 0; i < MOTOR_COUNT && i < SENSOR_COUNT; i++) {
+    SensorMotorBinding* sensorMotorBinding = &sensorMotorBindings[i];
+    sensorMotorBinding->sensorIndex = i;
+    sensorMotorBinding->motorIndex = i;
+    if (motors[i]->getPeripheralType() == RC_SERVO_MOTOR)
+      sensorMotorBinding->motorFunction = POSITION;
+    else
+      sensorMotorBinding->motorFunction = SPEED;
+    sensorMotorBinding->isSuppressed = false;
+    sensorMotorBinding->direction = CCW;
+  }
 }
 
 void loop() {
-  Servo s;
 	// Let each motor/sensor do its work.
 	for (int i = 0; i < MOTOR_COUNT; i++)
     motors[i]->doProcessing();
@@ -88,16 +106,37 @@ void loop() {
     }
   }
 	
-	// TODO @Sam: If a sensor is driving a motor, handle that here.
-	if (false) {
-		int relativeReading = dummySensor.getRelativeReading();
-		if (true) {
-			// TODO @Sam: Determine appropriate speed.
-			dummyMotor.setSpeed(0);
-		}
-		else {
-			// TODO @Sam: Determine appropriate angle. Test change.
-			dummyMotor.setAngle(0);
-		}
-	}
+	Sensor* sensor;
+  Motor* motor;
+  int speed, angle;
+	for (int i = 0; i < MOTOR_COUNT; i++) {    
+    SensorMotorBinding* sensorMotorBinding = &sensorMotorBindings[i];
+    if (!sensorMotorBinding->isSuppressed) {
+      sensor = sensors[sensorMotorBinding->sensorIndex];
+      motor = motors[sensorMotorBinding->motorIndex];
+      byte reading = sensor->getRelativeReading();
+      if (sensorMotorBinding->motorFunction == SPEED) {
+        speed = convertRelativeReadingToSpeed(reading, motor, sensorMotorBinding);
+        motor->setSpeed(speed);
+      }
+      else {
+        angle = convertRelativeReadingToAngle(reading, motor, sensorMotorBinding);
+        motor->setAngle(angle);
+      }
+    }
+  }
+}
+
+int convertRelativeReadingToSpeed(byte reading, Motor* motor, SensorMotorBinding* sensorMotorBinding) {
+  int speed = motor->getMaxSpeed() * reading / MAX_RELATIVE_READING;  
+  if (sensorMotorBinding->direction == CW)
+    speed *= -1;
+  return speed;
+}
+
+int convertRelativeReadingToAngle(byte reading, Motor* motor, SensorMotorBinding* sensorMotorBinding) {
+  int angle = 360 * reading / MAX_RELATIVE_READING;
+  if (sensorMotorBinding->direction == CW)
+    angle *= -1;
+  return angle;
 }
