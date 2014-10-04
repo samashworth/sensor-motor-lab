@@ -1,3 +1,4 @@
+#include <Servo.h>
 #include <Arduino.h>
 
 #include "Motor.h"
@@ -9,60 +10,82 @@
 #include "Sensor.h"
 #include "ForceSensor.h"
 #include "Potentiometer.h"
+#include "SonarSensor.h"
 #include "Thermistor.h"
 #include "DummySensor.h"
 
+#include "Messenger.h"
 #include "Misc.h"
+#include "Button.h"
 
 // Motors
+#define MOTOR_COUNT 4
 DCMotor dcMotor;
 RCServoMotor rcServoMotor;
 StepperMotor stepperMotor;
 DummyMotor dummyMotor;
+Motor* motors[] = { &dcMotor, &rcServoMotor, &stepperMotor, &dummyMotor };
 
 // Sensors
+#define SENSOR_COUNT 5
 ForceSensor forceSensor;
-Potentiometer Potentiometer;
+Potentiometer potentiometer;
+SonarSensor sonarSensor;
 Thermistor thermistor;
 DummySensor dummySensor;
+Sensor* sensors[] = { &forceSensor, &potentiometer, &sonarSensor, &thermistor, &dummySensor };
+  
+// Button
+Button button;
 
 long lastSensorPollTime;
 int sensorPollingInterval_ms = 1000; // milliseconds
+Message message;
 
 
 void setup() {
-	Serial.begin(9600);
+  // Initiate communications with client.
+  Messenger::initialize();
+  
 	// Declare variables that we'll use to initialize the motors and sensors.
 	int pinIds[5];
 	int interruptIds[2];
-	boolean initSuccess;
 	
 	// TODO @Sam: Find out how many pins each sensor needs and decide which pins will be given
 	// to which sensors.
 	// TODO @Sam: Initialize all sensors and motors.
 	
 	// Dummy motor initialization
-	pinIds[0] = 0;
-	pinIds[1] = 1;
+	pinIds[0] = 4;
+	pinIds[1] = 5;
 	dummyMotor.initialize(2, pinIds, 0, interruptIds);
 	
 	// Dummy sensor initialization
-	pinIds[0] = 2;
-	pinIds[1] = 3;
+	pinIds[0] = 6;
+	pinIds[1] = 8;
 	dummySensor.initialize(2, pinIds, 0, interruptIds);
 }
 
 void loop() {
+  Servo s;
 	// Let each motor/sensor do its work.
-	// TODO @Sam: Add other motors/sensors here.
-	dummyMotor.doProcessing();
-	dummySensor.doProcessing();
+	for (int i = 0; i < MOTOR_COUNT; i++)
+    motors[i]->doProcessing();
+  for (int i = 0; i < SENSOR_COUNT; i++)
+    sensors[i]->doProcessing();
 	
-	// TODO @Sam: Only do this on an interval.
-	if (false) {
-		float reading = dummySensor.getReading();
-		// TODO @Sam: Send reading to client.
-	}
+  // On an interval, read the sensors and return the data to the client.  
+  long currentTime = millis();
+  if (currentTime - lastSensorPollTime > sensorPollingInterval_ms)
+  {
+    for (int i = 0; i < SENSOR_COUNT; i++) {
+      float reading = sensors[i]->getReading();
+      message.messageType = READING;
+      message.peripheralType = sensors[i]->getPeripheralType();
+      message.payload = reading;
+      Messenger::send(message);
+    }
+  }
 	
 	// TODO @Sam: If a sensor is driving a motor, handle that here.
 	if (false) {
@@ -75,12 +98,5 @@ void loop() {
 			// TODO @Sam: Determine appropriate angle. Test change.
 			dummyMotor.setAngle(0);
 		}
-	}
-	
-	long currentTime = millis();
-	if (currentTime - lastSensorPollTime > sensorPollingInterval_ms)
-	{
-		Serial.println(dummySensor.getReading());
-		lastSensorPollTime = currentTime;
 	}
 }

@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include "SensorInfo.h"
+#include "Misc.h"
 
 /*
 Represents a sensor. Facilitates reading the sensor.
@@ -49,6 +50,13 @@ class Sensor {
     variables. This method will be called once on every iteration of the main Arduino loop.
     */
     virtual void doProcessing();
+    
+    /*
+    Gets the peripheral type of the sensor. PeripheralType is just an enum that contains every motor type and
+    sensor type, i.e.:
+    enum PeripheralType { DC_MOTOR, RC_SERVO_MOTOR, STEPPER_MOTOR, FORCE_SENSOR, RANGE_SENSOR, THERMISTOR };
+    */
+    virtual PeripheralType getPeripheralType();
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_SENSOR_H */

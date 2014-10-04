@@ -20,6 +20,8 @@ class DummyMotor : public Motor {
 	
     virtual void doProcessing();
     
+    virtual PeripheralType getPeripheralType() { return DUMMY_MOTOR; }
+    
   private:
     // If you want, you can put variables here so that you can remember data from one call to the next.
     byte testVar;
