@@ -23,6 +23,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\arduino.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Arduino_SensorMotorLab.ino"
+#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Button.cpp"
+#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Button.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\DCMotor.cpp"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\DCMotor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\DummyMotor.cpp"

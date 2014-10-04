@@ -212,6 +212,12 @@
     <Compile Include="Arduino_SensorMotorLab.ino">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Messenger.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Messenger.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Misc.h">
       <SubType>compile</SubType>
     </Compile>
