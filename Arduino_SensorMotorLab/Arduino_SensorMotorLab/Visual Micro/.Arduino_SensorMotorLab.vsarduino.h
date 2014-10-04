@@ -43,7 +43,6 @@ int convertRelativeReadingToAngle(byte reading, Motor* motor, SensorMotorBinding
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\MotorInfo.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Potentiometer.cpp"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Potentiometer.h"
-#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\RCServoMotor.cpp"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\RCServoMotor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Sensor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\SensorInfo.h"
