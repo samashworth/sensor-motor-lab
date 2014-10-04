@@ -32,6 +32,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\ForceSensor.cpp"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\ForceSensor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Message.h"
+#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Messenger.cpp"
+#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Messenger.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Misc.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Motor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\MotorInfo.h"
