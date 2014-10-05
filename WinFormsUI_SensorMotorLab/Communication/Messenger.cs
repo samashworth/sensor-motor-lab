@@ -35,7 +35,7 @@ namespace Communication
 
         private void _serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            while (_serialPort.BytesToRead > 0)
+            while (_serialPort.IsOpen && _serialPort.BytesToRead > 0)
             {
                 byte b = (byte)_serialPort.ReadByte();
                 if (buffer.Count == 0 && b != START_CODE)

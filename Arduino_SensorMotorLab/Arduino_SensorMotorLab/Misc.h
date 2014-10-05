@@ -9,7 +9,7 @@ enum SensorType { FORCE_SENSOR, POTENTIOMETER, SONAR_SENSOR, THERMISTOR, DUMMY_S
 
 enum MessageType { READING_GET, ANGLE_GET, ANGLE_SET, SPEED_GET, SPEED_SET, ERROR_GET, STRING_GET, SENSOR_MOTOR_BINDING_SET };
   
-enum MotorFunction { POSITION, SPEED };
+enum MotorFunction { SPEED, ANGLE };
   
 enum Direction { CCW, CW }; 
 
