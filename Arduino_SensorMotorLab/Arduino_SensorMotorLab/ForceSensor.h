@@ -18,7 +18,7 @@ class ForceSensor : public Sensor {
 	
     virtual void doProcessing();
     
-    virtual PeripheralType getPeripheralType() { return FORCE_SENSOR; }
+    virtual SensorType getSensorType() { return FORCE_SENSOR; }
     
   private:
     // If you want, you can put variables here so that you can remember data from one call to the next.

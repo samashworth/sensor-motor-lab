@@ -26,7 +26,7 @@ class RCServoMotor : public Motor {
 
     virtual void doProcessing();
     
-    virtual PeripheralType getPeripheralType() { return RC_SERVO_MOTOR; }
+    virtual MotorType getMotorType() { return RC_SERVO_MOTOR; }
     
   private:
     // If you want, you can put variables here so that you can remember data from one call to the next.

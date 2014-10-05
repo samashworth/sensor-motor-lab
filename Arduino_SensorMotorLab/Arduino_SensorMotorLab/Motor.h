@@ -77,7 +77,7 @@ class Motor {
     sensor type, i.e.:
     enum PeripheralType { DC_MOTOR, RC_SERVO_MOTOR, STEPPER_MOTOR, FORCE_SENSOR, RANGE_SENSOR, THERMISTOR };
     */
-    virtual PeripheralType getPeripheralType();
+    virtual MotorType getMotorType();
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_MOTOR_H */

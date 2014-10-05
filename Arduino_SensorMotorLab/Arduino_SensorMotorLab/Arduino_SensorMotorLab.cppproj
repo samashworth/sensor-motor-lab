@@ -286,6 +286,9 @@
     <Compile Include="SensorInfo.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="SensorMotorBinding.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="SonarSensor.cpp">
       <SubType>compile</SubType>
     </Compile>

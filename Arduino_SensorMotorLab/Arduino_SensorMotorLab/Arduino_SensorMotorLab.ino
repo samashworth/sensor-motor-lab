@@ -37,15 +37,17 @@ Thermistor thermistor;
 DummySensor dummySensor;
 Sensor* sensors[] = { &forceSensor, &potentiometer, &sonarSensor, &thermistor, &dummySensor };
   
+// Bindings between sensors and motors.
+SensorMotorBinding sensorMotorBindings[MOTOR_COUNT];
+  
 // Button
 Button button;
 
 // Other objects
 Message message;
-SensorMotorBinding sensorMotorBindings[MOTOR_COUNT];
 
-long lastSensorPollTime;
-int sensorPollingInterval_ms = 1000; // milliseconds
+long lastPollTime;
+int pollingInterval_ms = 1000; // milliseconds
 
 #define MAX_RELATIVE_READING 255
 
@@ -77,7 +79,7 @@ void setup() {
     SensorMotorBinding* sensorMotorBinding = &sensorMotorBindings[i];
     sensorMotorBinding->sensorIndex = i;
     sensorMotorBinding->motorIndex = i;
-    if (motors[i]->getPeripheralType() == RC_SERVO_MOTOR)
+    if (motors[i]->getMotorType() == RC_SERVO_MOTOR)
       sensorMotorBinding->motorFunction = POSITION;
     else
       sensorMotorBinding->motorFunction = SPEED;
@@ -86,28 +88,74 @@ void setup() {
   }
 }
 
-void loop() {
+void loop() {  
+  // Local variables.
+  Sensor* sensor;
+  Motor* motor;
+  
 	// Let each motor/sensor do its work.
 	for (int i = 0; i < MOTOR_COUNT; i++)
     motors[i]->doProcessing();
   for (int i = 0; i < SENSOR_COUNT; i++)
     sensors[i]->doProcessing();
 	
-  // On an interval, read the sensors and return the data to the client.  
+  // On an interval, read the sensors and motors and return the data to the client.  
   long currentTime = millis();
-  if (currentTime - lastSensorPollTime > sensorPollingInterval_ms)
+  if (currentTime - lastPollTime > pollingInterval_ms)
   {
     for (int i = 0; i < SENSOR_COUNT; i++) {
-      float reading = sensors[i]->getReading();
-      message.messageType = READING;
-      message.peripheralType = sensors[i]->getPeripheralType();
-      message.payload = reading;
+      sensor = sensors[i];
+      message.messageType = READING_GET;
+      message.sensorType = sensor->getSensorType();
+      message.messagePayload.payloadFloat = sensor->getReading();
       Messenger::send(message);
     }
+    for (int i = 0; i < MOTOR_COUNT; i++) {
+      motor = motors[i];
+      message.messageType = SPEED_SET;
+      message.motorType = motor->getMotorType();
+      message.messagePayload.payloadInt = motor->getSpeed();
+      Messenger::send(message);
+      // TODO @Sam: We need position too.
+    }
   }
-	
-	Sensor* sensor;
-  Motor* motor;
+  
+  // Process commands from the UI
+  if (Messenger::recieve(&message)) {
+    if (message.messageType == ANGLE_SET || message.messageType == SPEED_SET) {
+      for (int i = 0; i < MOTOR_COUNT; i++) {
+        if (motors[i]->getMotorType() == message.motorType) {
+          sensorMotorBindings[i].isSuppressed = true;
+          if (message.messageType == ANGLE_GET) {
+            motors[i]->setAngle(message.messagePayload.payloadInt);
+          }
+          else {
+            motors[i]->setSpeed(message.messagePayload.payloadInt);
+          }
+          break;
+        }
+      }
+  }
+  else if (message.messageType == SENSOR_MOTOR_BINDING_SET) {
+    for (int i = 0; i < MOTOR_COUNT; i++) {
+      if (motors[i]->getMotorType() == message.motorType) {
+        SensorMotorBinding sensorMotorBinding = sensorMotorBindings[i];
+        sensorMotorBinding.isSuppressed = false;
+        sensorMotorBinding.motorFunction = (MotorFunction)message.messagePayload.payloadByte[0];
+        sensorMotorBinding.direction = (Direction)message.messagePayload.payloadByte[1];
+        for (int j = 0; j < SENSOR_COUNT; j++) {
+          if (sensors[j]->getSensorType() == message.sensorType) {
+            sensorMotorBinding.sensorIndex = j;
+            break;
+          }
+        }
+        break;
+      }
+    }
+  }
+  }
+  
+  // If sensors are bound to motors, feed sensor data into the motors.
   int speed, angle;
 	for (int i = 0; i < MOTOR_COUNT; i++) {    
     SensorMotorBinding* sensorMotorBinding = &sensorMotorBindings[i];

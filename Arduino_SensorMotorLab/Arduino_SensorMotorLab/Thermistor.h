@@ -18,7 +18,7 @@ class Thermistor : public Sensor {
 
     virtual void doProcessing();
     
-    virtual PeripheralType getPeripheralType() { return THERMISTOR; }
+    virtual SensorType getSensorType() { return THERMISTOR; }
     
   private:
     // If you want, you can put variables here so that you can remember data from one call to the next.
