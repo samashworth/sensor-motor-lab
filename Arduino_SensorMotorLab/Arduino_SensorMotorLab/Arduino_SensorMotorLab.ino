@@ -20,25 +20,25 @@
 #include "SensorMotorBinding.h"
 
 // Motors
-// #define MOTOR_COUNT 4
-#define MOTOR_COUNT 1
+#define MOTOR_COUNT 4
+//#define MOTOR_COUNT 1
 DCMotor dcMotor;
 RCServoMotor rcServoMotor;
 StepperMotor stepperMotor;
 DummyMotor dummyMotor;
-//Motor* motors[] = { &dcMotor, &rcServoMotor, &stepperMotor, &dummyMotor };
-Motor* motors[] = { &dummyMotor };
+Motor* motors[] = { &dcMotor, &rcServoMotor, &stepperMotor, &dummyMotor };
+//Motor* motors[] = { &dummyMotor };
 
 // Sensors
-// #define SENSOR_COUNT 5
-#define SENSOR_COUNT 1
+#define SENSOR_COUNT 5
+//#define SENSOR_COUNT 1
 ForceSensor forceSensor;
 Potentiometer potentiometer;
 SonarSensor sonarSensor;
 Thermistor thermistor;
 DummySensor dummySensor;
-//Sensor* sensors[] = { &forceSensor, &potentiometer, &sonarSensor, &thermistor, &dummySensor };
- Sensor* sensors[] = { &dummySensor };
+Sensor* sensors[] = { &forceSensor, &potentiometer, &sonarSensor, &thermistor, &dummySensor };
+//Sensor* sensors[] = { &dummySensor };
   
 // Bindings between sensors and motors.
 SensorMotorBinding sensorMotorBindings[MOTOR_COUNT];
