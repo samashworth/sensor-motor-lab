@@ -3,12 +3,35 @@
 
 void ForceSensor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
-  // TODO @Sowmya: Implement this.
+  int fsrReading;     
+  int fsrVoltage;     
+  unsigned long fsrResistance;
+  unsigned long fsrConductance; 
+  long fsrForce;
 }
 
 float ForceSensor::getReading()
 {
-  // TODO @Sowmya: Implement this.
+  fsrVoltage = map(fsrRead, 0, 1023, 0, 5000);
+  if (fsrVoltage == 0) {
+      fsrForce = 0;  
+    } else {
+              
+      fsrResistance = 5000 - fsrVoltage;     // 5V = 5000mV
+      fsrResistance *= 10000;                // 10K ohm resistor
+      fsrResistance /= fsrVoltage;
+      
+   
+      fsrConductance = 1000000;           // micromhos 
+      fsrConductance /= fsrResistance;
+       
+        if (fsrConductance <= 1000) {
+        fsrForce = fsrConductance / 80;            
+      } else {
+        fsrForce = fsrConductance - 1000;
+        fsrForce /= 30;              
+      }
+    }
   return 0.0;
 }
 
@@ -31,6 +54,7 @@ SensorInfo ForceSensor::getSensorInfo()
 
 void ForceSensor::doProcessing()
 {
-  // TODO @Sowmya: Implement this.
+  fsrRead = analogRead(fsrPin); 
+  
 }
 

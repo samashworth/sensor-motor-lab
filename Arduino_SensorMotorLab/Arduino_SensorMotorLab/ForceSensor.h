@@ -16,7 +16,7 @@ class ForceSensor : public Sensor {
 	
     virtual SensorInfo getSensorInfo();
 	
-    virtual void doProcessing();
+    virtual void doProcessing(); 
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_FORCESENSOR_H */
