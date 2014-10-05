@@ -3,11 +3,7 @@
 
 void ForceSensor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
-  int fsrReading;     
-  int fsrVoltage;     
-  unsigned long fsrResistance;
-  unsigned long fsrConductance; 
-  long fsrForce;
+  fsrPin = pinIds[0];
 }
 
 float ForceSensor::getReading()
