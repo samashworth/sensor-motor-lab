@@ -2,21 +2,20 @@
 
 char Messenger::buffer[BUFFER_SIZE];
 int Messenger::bufferPos = 0;
-boolean Messenger::debugMode = true;
+boolean Messenger::debugMode = false;
 
 void Messenger::initialize() {
   Serial.begin(115200);
 }
 
 void Messenger::send(Message message) {
-  Messenger::printMessage("Send message start", true);
+  Messenger::printMessage("Send message", true);
   Serial.write(START_CODE);
   Serial.write(message.messageType);
   Serial.write(message.motorType);
   Serial.write(message.sensorType);
   Serial.write(message.messagePayload.payloadByte, 4);
   Serial.write(STOP_CODE);
-  Messenger::printMessage("Send message end", true);
 }
 
 boolean Messenger::recieve(Message* message) {

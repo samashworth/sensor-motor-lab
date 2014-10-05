@@ -35,7 +35,7 @@ namespace Communication
 
         private void _serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            while (_serialPort.BytesToRead > 0)
+            while (_serialPort.IsOpen && _serialPort.BytesToRead > 0)
             {
                 byte b = (byte)_serialPort.ReadByte();
                 if (buffer.Count == 0 && b != START_CODE)
@@ -56,7 +56,10 @@ namespace Communication
                         string payload = Encoding.ASCII.GetString(buffer.GetRange(3, length).ToArray());
                         message.Payload = payload;
                     }
-                    else
+                    else if (
+                        message.MessageType == MessageType.ANGLE_GET || 
+                        message.MessageType == MessageType.SPEED_GET ||
+                        message.MessageType == MessageType.READING_GET)
                     {
                         message.MotorType = (MotorType)buffer[2];
                         message.SensorType = (SensorType)buffer[3];
@@ -64,7 +67,7 @@ namespace Communication
                         {
                             message.Payload = BitConverter.ToInt16(buffer.GetRange(4, 2).ToArray(), 0);
                         }
-                        else
+                        else if (message.MessageType == MessageType.READING_GET)
                         {
                             message.Payload = BitConverter.ToSingle(buffer.GetRange(4, 4).ToArray(), 0);
                         }

@@ -26,7 +26,6 @@ float DummySensor::getReading()
 byte DummySensor::getRelativeReading()
 {
 	byte result = (byte)((reading + 5.0) / 10.0 * 255.0);
-	Messenger::printMessage("DummySensor getRelativeReading: " + result, true);
   return result;
 }
 

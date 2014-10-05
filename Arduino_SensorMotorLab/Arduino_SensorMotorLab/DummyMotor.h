@@ -15,6 +15,8 @@ class DummyMotor : public Motor {
     virtual int getMaxSpeed();
 	
     virtual int getSpeed();
+    
+    virtual int getAngle();
 	
     virtual void setSpeed(int rpm);
 	

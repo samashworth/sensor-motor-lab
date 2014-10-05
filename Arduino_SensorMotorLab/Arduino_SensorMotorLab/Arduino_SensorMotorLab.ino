@@ -13,7 +13,6 @@
 #include "SonarSensor.h"
 #include "Thermistor.h"
 #include "DummySensor.h"
-#include <Servo.h>
 
 #include "Messenger.h"
 #include "Misc.h"
@@ -21,25 +20,25 @@
 #include "SensorMotorBinding.h"
 
 // Motors
-// #define MOTOR_COUNT 4
-#define MOTOR_COUNT 1
+#define MOTOR_COUNT 4
+//#define MOTOR_COUNT 1
 DCMotor dcMotor;
 RCServoMotor rcServoMotor;
 StepperMotor stepperMotor;
 DummyMotor dummyMotor;
-//Motor* motors[] = { &dcMotor, &rcServoMotor, &stepperMotor, &dummyMotor };
-Motor* motors[] = { &dummyMotor };
+Motor* motors[] = { &dcMotor, &rcServoMotor, &stepperMotor, &dummyMotor };
+//Motor* motors[] = { &dummyMotor };
 
 // Sensors
-// #define SENSOR_COUNT 5
-#define SENSOR_COUNT 1
+#define SENSOR_COUNT 5
+//#define SENSOR_COUNT 1
 ForceSensor forceSensor;
 Potentiometer potentiometer;
 SonarSensor sonarSensor;
 Thermistor thermistor;
 DummySensor dummySensor;
-//Sensor* sensors[] = { &forceSensor, &potentiometer, &sonarSensor, &thermistor, &dummySensor };
- Sensor* sensors[] = { &dummySensor };
+Sensor* sensors[] = { &forceSensor, &potentiometer, &sonarSensor, &thermistor, &dummySensor };
+//Sensor* sensors[] = { &dummySensor };
   
 // Bindings between sensors and motors.
 SensorMotorBinding sensorMotorBindings[MOTOR_COUNT];
@@ -87,7 +86,7 @@ void setup() {
     sensorMotorBinding->sensorIndex = i;
     sensorMotorBinding->motorIndex = i;
     if (motors[i]->getMotorType() == RC_SERVO_MOTOR)
-      sensorMotorBinding->motorFunction = POSITION;
+      sensorMotorBinding->motorFunction = ANGLE;
     else
       sensorMotorBinding->motorFunction = SPEED;
     sensorMotorBinding->isSuppressed = true;
@@ -96,7 +95,6 @@ void setup() {
 }
 
 void loop() {  
-  delay(1000);
   // Local variables.
   Sensor* sensor;
   Motor* motor;
@@ -113,6 +111,8 @@ void loop() {
   {
     Messenger::printMessage("Polling", true);
     lastPollTime = currentTime;
+    // Poll the sensors.
+    Messenger::printMessage("Sensor count " + String(SENSOR_COUNT), true);
     for (int i = 0; i < SENSOR_COUNT; i++) {
       sensor = sensors[i];
       message.messageType = READING_GET;
@@ -120,20 +120,31 @@ void loop() {
       message.messagePayload.payloadFloat = sensor->getReading();
       Messenger::send(message);
     }
+    // Poll the motors.
     Messenger::printMessage("Motor count " + String(MOTOR_COUNT), true);
     for (int i = 0; i < MOTOR_COUNT; i++) {
       motor = motors[i];
-      message.messageType = SPEED_GET;
-      message.motorType = motor->getMotorType();
-      message.messagePayload.payloadInt = motor->getSpeed();
-      Messenger::send(message);
-      // TODO @Sam: We need position too.
+      if (motor->getMotorType() != RC_SERVO_MOTOR) {
+        message.messageType = SPEED_GET;
+        message.motorType = motor->getMotorType();
+        message.messagePayload.payloadInt = motor->getSpeed();
+        Messenger::send(message);
+      }      
+      if (motor->getMotorType() == RC_SERVO_MOTOR ||
+          motor->getMotorType() == DUMMY_MOTOR)
+      {
+        message.messageType = ANGLE_GET;
+        message.motorType = motor->getMotorType();
+        message.messagePayload.payloadInt = motor->getAngle();
+        Messenger::send(message);        
+      }        
     }
   }
   
   // Process commands from the UI
   if (Messenger::recieve(&message)) {
     if (message.messageType == ANGLE_SET || message.messageType == SPEED_SET) {
+      // Process angle and speed commands.
       for (int i = 0; i < MOTOR_COUNT; i++) {
         if (motors[i]->getMotorType() == message.motorType) {
           sensorMotorBindings[i].isSuppressed = true;
@@ -146,36 +157,43 @@ void loop() {
           break;
         }
       }
-  }
-  else if (message.messageType == SENSOR_MOTOR_BINDING_SET) {
-    for (int i = 0; i < MOTOR_COUNT; i++) {
-      if (motors[i]->getMotorType() == message.motorType) {
-        SensorMotorBinding* sensorMotorBinding = &sensorMotorBindings[i];
-        sensorMotorBinding->isSuppressed = false;
-        sensorMotorBinding->motorFunction = (MotorFunction)message.messagePayload.payloadByte[0];
-        sensorMotorBinding->direction = (Direction)message.messagePayload.payloadByte[1];
-        for (int j = 0; j < SENSOR_COUNT; j++) {
-          if (sensors[j]->getSensorType() == message.sensorType) {
-            sensorMotorBinding->sensorIndex = j;
-            break;
-          }
+    }
+    else if (message.messageType == SENSOR_MOTOR_BINDING_SET) {
+      // Process sensor/motor binding commands.
+      for (int i = 0; i < MOTOR_COUNT; i++) {
+        if (motors[i]->getMotorType() == message.motorType) {
+          SensorMotorBinding* sensorMotorBinding = &sensorMotorBindings[i];
+          sensorMotorBinding->isSuppressed = false;
+          sensorMotorBinding->motorFunction = (MotorFunction)message.messagePayload.payloadByte[0];
+          sensorMotorBinding->direction = (Direction)message.messagePayload.payloadByte[1];
+          for (int j = 0; j < SENSOR_COUNT; j++) {
+            if (sensors[j]->getSensorType() == message.sensorType) {
+              sensorMotorBinding->sensorIndex = j;
+              break;
+            }
+          }        
+          break;
         }
-        if (Messenger::debugMode) {
-          Messenger::printMessage(
-            "Binding: " + String(sensorMotorBinding->motorIndex) + ", " + String(sensorMotorBinding->sensorIndex) + ", " +
-            String(sensorMotorBinding->motorFunction) + ", " + String(sensorMotorBinding->direction) + ", " + String(sensorMotorBinding->isSuppressed), true);
-        }          
-        break;
       }
     }
-  }
-  }
+  }  
+  
+  // If the button is pressed, stop all motors
+  if (button.pressOccurred()) {
+    for (int i = 0; i < MOTOR_COUNT; i++) {      
+      SensorMotorBinding* sensorMotorBinding = &sensorMotorBindings[i];
+      Motor* motor = motors[i];
+      sensorMotorBinding->isSuppressed = true;
+      motor->setSpeed(0);
+      message.messageType = ALL_STOP;
+      Messenger::send(message);
+    }      
+  } 
   
   // If sensors are bound to motors, feed sensor data into the motors.
   int speed, angle;
 	for (int i = 0; i < MOTOR_COUNT; i++) {    
     SensorMotorBinding* sensorMotorBinding = &sensorMotorBindings[i];
-    Messenger::printMessage("bindingSuppressed: " + String(sensorMotorBinding->isSuppressed), true);
     if (!sensorMotorBinding->isSuppressed) {
       sensor = sensors[sensorMotorBinding->sensorIndex];
       motor = motors[sensorMotorBinding->motorIndex];
@@ -189,7 +207,7 @@ void loop() {
         motor->setAngle(angle);
       }
     }
-  }
+  }   
 }
 
 int convertRelativeReadingToSpeed(byte reading, Motor* motor, SensorMotorBinding* sensorMotorBinding) {
