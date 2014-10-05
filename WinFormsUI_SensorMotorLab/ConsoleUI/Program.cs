@@ -82,7 +82,8 @@ namespace ConsoleUI
             else if (message.MessageType == MessageType.STRING_GET)
             {
                 string payload = (string)message.Payload;
-                if (payload.Contains("setSpeed") || payload.Contains("setAngle") || payload.Contains("Binding"))
+                if ((payload.Contains("setSpeed") || payload.Contains("setAngle") || payload.Contains("Binding")) ||
+                    ((payload.Contains("bindingSuppressed") || payload.Contains("getRelativeReading")) && !isQuiet))
                 {
                     Console.WriteLine("{0}\t{1}", message.MessageType, (string)message.Payload);
                 }

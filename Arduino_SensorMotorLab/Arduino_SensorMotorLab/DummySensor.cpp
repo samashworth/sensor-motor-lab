@@ -25,7 +25,9 @@ float DummySensor::getReading()
 
 byte DummySensor::getRelativeReading()
 {
-	return (byte)((reading + 5.0) / 10.0 * 255.0);
+	byte result = (byte)((reading + 5.0) / 10.0 * 255.0);
+	Messenger::printMessage("DummySensor getRelativeReading: " + result, true);
+  return result;
 }
 
 SensorInfo DummySensor::getSensorInfo() 
@@ -33,8 +35,8 @@ SensorInfo DummySensor::getSensorInfo()
   Messenger::printMessage("DummySensor getSensorInfo", true);
   SensorInfo SensorInfo;
   SensorInfo.units = CELSIUS;
-  SensorInfo.minReading = 0;
-  SensorInfo.maxReading = 9;
+  SensorInfo.minReading = -5;
+  SensorInfo.maxReading = 5;
   
   return SensorInfo;
 }
