@@ -21,21 +21,25 @@
 #include "SensorMotorBinding.h"
 
 // Motors
-#define MOTOR_COUNT 4
+// #define MOTOR_COUNT 4
+#define MOTOR_COUNT 1
 DCMotor dcMotor;
 RCServoMotor rcServoMotor;
 StepperMotor stepperMotor;
 DummyMotor dummyMotor;
-Motor* motors[] = { &dcMotor, &rcServoMotor, &stepperMotor, &dummyMotor };
+//Motor* motors[] = { &dcMotor, &rcServoMotor, &stepperMotor, &dummyMotor };
+Motor* motors[] = { &dummyMotor };
 
 // Sensors
-#define SENSOR_COUNT 5
+// #define SENSOR_COUNT 5
+#define SENSOR_COUNT 1
 ForceSensor forceSensor;
 Potentiometer potentiometer;
 SonarSensor sonarSensor;
 Thermistor thermistor;
 DummySensor dummySensor;
-Sensor* sensors[] = { &forceSensor, &potentiometer, &sonarSensor, &thermistor, &dummySensor };
+//Sensor* sensors[] = { &forceSensor, &potentiometer, &sonarSensor, &thermistor, &dummySensor };
+ Sensor* sensors[] = { &dummySensor };
   
 // Bindings between sensors and motors.
 SensorMotorBinding sensorMotorBindings[MOTOR_COUNT];
@@ -46,8 +50,8 @@ Button button;
 // Other objects
 Message message;
 
-long lastPollTime;
-int pollingInterval_ms = 1000; // milliseconds
+long lastPollTime = 0;
+long pollingInterval_ms = 2000; // milliseconds
 
 #define MAX_RELATIVE_READING 255
 
@@ -65,16 +69,19 @@ void setup() {
 	// TODO @Sam: Initialize all sensors and motors.
 	
 	// Dummy motor initialization
+  Messenger::printMessage("Initialize dummy motor", true);
 	pinIds[0] = 4;
 	pinIds[1] = 5;
 	dummyMotor.initialize(2, pinIds, 0, interruptIds);
 	
 	// Dummy sensor initialization
+	Messenger::printMessage("Initialize dummy sensor", true);
 	pinIds[0] = 6;
 	pinIds[1] = 8;
 	dummySensor.initialize(2, pinIds, 0, interruptIds);
   
   // Setup the sensor/motor bindings.
+  Messenger::printMessage("Initialize sensor motor bindings", true);
   for (int i = 0; i < MOTOR_COUNT && i < SENSOR_COUNT; i++) {
     SensorMotorBinding* sensorMotorBinding = &sensorMotorBindings[i];
     sensorMotorBinding->sensorIndex = i;
@@ -83,7 +90,7 @@ void setup() {
       sensorMotorBinding->motorFunction = POSITION;
     else
       sensorMotorBinding->motorFunction = SPEED;
-    sensorMotorBinding->isSuppressed = false;
+    sensorMotorBinding->isSuppressed = true;
     sensorMotorBinding->direction = CCW;
   }
 }
@@ -103,6 +110,8 @@ void loop() {
   long currentTime = millis();
   if (currentTime - lastPollTime > pollingInterval_ms)
   {
+    Messenger::printMessage("Polling", true);
+    lastPollTime = currentTime;
     for (int i = 0; i < SENSOR_COUNT; i++) {
       sensor = sensors[i];
       message.messageType = READING_GET;
@@ -110,9 +119,10 @@ void loop() {
       message.messagePayload.payloadFloat = sensor->getReading();
       Messenger::send(message);
     }
+    Messenger::printMessage("Motor count " + String(MOTOR_COUNT), true);
     for (int i = 0; i < MOTOR_COUNT; i++) {
       motor = motors[i];
-      message.messageType = SPEED_SET;
+      message.messageType = SPEED_GET;
       message.motorType = motor->getMotorType();
       message.messagePayload.payloadInt = motor->getSpeed();
       Messenger::send(message);
@@ -126,7 +136,7 @@ void loop() {
       for (int i = 0; i < MOTOR_COUNT; i++) {
         if (motors[i]->getMotorType() == message.motorType) {
           sensorMotorBindings[i].isSuppressed = true;
-          if (message.messageType == ANGLE_GET) {
+          if (message.messageType == ANGLE_SET) {
             motors[i]->setAngle(message.messagePayload.payloadInt);
           }
           else {
@@ -149,6 +159,11 @@ void loop() {
             break;
           }
         }
+        if (Messenger::debugMode) {
+          Messenger::printMessage(
+            "Binding: " + String(sensorMotorBinding.motorIndex) + ", " + String(sensorMotorBinding.sensorIndex) + ", " +
+            String(sensorMotorBinding.motorFunction) + ", " + String(sensorMotorBinding.direction) + ", " + String(sensorMotorBinding.isSuppressed), true);
+        }          
         break;
       }
     }
@@ -169,7 +184,7 @@ void loop() {
       }
       else {
         angle = convertRelativeReadingToAngle(reading, motor, sensorMotorBinding);
-        motor->setAngle(angle);
+        //motor->setAngle(angle);
       }
     }
   }

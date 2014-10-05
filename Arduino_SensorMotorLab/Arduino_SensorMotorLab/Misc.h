@@ -11,6 +11,6 @@ enum MessageType { READING_GET, ANGLE_GET, ANGLE_SET, SPEED_GET, SPEED_SET, ERRO
   
 enum MotorFunction { POSITION, SPEED };
   
-enum Direction { CCW, CW };
+enum Direction { CCW, CW }; 
 
 #endif /* ARDUINO_SENSORMOTORLAB_CONSTANTS_H */
