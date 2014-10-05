@@ -2,7 +2,7 @@
 
 char Messenger::buffer[BUFFER_SIZE];
 int Messenger::bufferPos = 0;
-boolean Messenger::debugMode = true;
+boolean Messenger::debugMode = false;
 
 void Messenger::initialize() {
   Serial.begin(115200);

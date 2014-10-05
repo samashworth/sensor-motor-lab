@@ -24,9 +24,21 @@ namespace WinFormsUI_SensorMotorLab
 
         public void HandleMessage(Message message)
         {
-            if (message.MotorType == MotorType && message.MessageType == MessageType.ANGLE_GET)
+            if (InvokeRequired)
             {
-                _textBoxAngle.Text = ((short)message.Payload).ToString();
+                BeginInvoke(new Action<Message>(HandleMessage), message);
+            }
+            else
+            {
+                if (message.MessageType == MessageType.ALL_STOP)
+                {
+                    _radioButtonManual.Checked = true;
+                    updateControlSource();
+                }
+                else if (message.MotorType == MotorType && message.MessageType == MessageType.ANGLE_GET)
+                {
+                    _textBoxAngle.Text = ((short)message.Payload).ToString();
+                }
             }
         }
 

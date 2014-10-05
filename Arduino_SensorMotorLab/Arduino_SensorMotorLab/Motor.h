@@ -43,6 +43,14 @@ class Motor {
     virtual int getSpeed();
     
     /*
+    Returns the motor's current angle, in degrees. We're only using this with the servo motor.
+    */
+    virtual int getAngle()
+    {
+      return 0;
+    }      
+    
+    /*
     Sets the motor's speed, in revolutions per minute. If the motor is not capable of continuous rotation, 
     this function will have no effect.
     Parameters:

@@ -36,7 +36,12 @@ namespace WinFormsUI_SensorMotorLab
             }
             else
             {
-                if (message.MotorType == _motorType && message.MessageType == MessageType.SPEED_GET)
+                if (message.MessageType == MessageType.ALL_STOP)
+                {
+                    _radioButtonManual.Checked = true;
+                    updateControlSource();
+                }
+                else if (message.MotorType == _motorType && message.MessageType == MessageType.SPEED_GET)
                 {
                     _textBoxSpeed.Text = ((short)message.Payload).ToString();
                 }

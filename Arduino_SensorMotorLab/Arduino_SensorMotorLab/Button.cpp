@@ -8,4 +8,5 @@ void Button::initialize(int numPins, int pinIds[], int numInterrupts, int interr
 boolean Button::pressOccurred()
 {
   // TODO @Sowmya: Implement this.
+  return false;
 }

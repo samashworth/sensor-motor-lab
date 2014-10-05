@@ -25,7 +25,6 @@ namespace WinFormsUI_SensorMotorLab
             
             string comPortName = ConfigurationManager.AppSettings["COMPortName"];
             _messenger = new Messenger(comPortName);
-            _messenger.MessageReceived += _messenger_MessageReceived;
             _motorControlDC.MotorType = MotorType.DC_MOTOR;
             _motorControlStepper.MotorType = MotorType.STEPPER_MOTOR;
             _motorControlDummy.MotorType = MotorType.DUMMY_MOTOR;
@@ -37,6 +36,13 @@ namespace WinFormsUI_SensorMotorLab
                     _messageHandlerList.Add((IMessageHandler)control);
                 }
             }
+
+            foreach (IMessageHandler messageHandler in _messageHandlerList)
+            {
+                messageHandler.Messenger = _messenger;
+            }
+
+            _messenger.MessageReceived += _messenger_MessageReceived;
         }
 
         void _messenger_MessageReceived(MessageReceivedEventArgs eventArgs, object sender)

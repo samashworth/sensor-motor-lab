@@ -24,6 +24,12 @@ int DummyMotor::getSpeed()
   return speed;
 }
 
+int DummyMotor::getAngle()
+{
+  Messenger::printMessage("DummyMotor getAngle", true);
+  return angle;
+}
+
 void DummyMotor::setSpeed(int rpm)
 {
   //Messenger::printMessage("DummyMotor setSpeed: " + String(rpm), true);
