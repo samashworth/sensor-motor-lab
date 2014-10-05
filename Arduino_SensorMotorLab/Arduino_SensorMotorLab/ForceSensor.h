@@ -16,7 +16,13 @@ class ForceSensor : public Sensor {
 	
     virtual SensorInfo getSensorInfo();
 	
-    virtual void doProcessing(); 
+    virtual void doProcessing();
+    
+    virtual SensorType getSensorType() { return FORCE_SENSOR; }
+    
+  private:
+    // If you want, you can put variables here so that you can remember data from one call to the next.
+    byte testVar;
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_FORCESENSOR_H */

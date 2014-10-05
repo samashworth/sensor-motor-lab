@@ -8,6 +8,8 @@ Represents a dummy motor for use in testing.
 */
 class DummyMotor : public Motor {
   public:
+    DummyMotor();
+    
     virtual void initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[]);
 	
     virtual int getMaxSpeed();
@@ -18,7 +20,14 @@ class DummyMotor : public Motor {
 	
     virtual void setAngle(int deg);
 	
-    virtual void doProcessing(); 
+    virtual void doProcessing();
+    
+    virtual MotorType getMotorType() { return DUMMY_MOTOR; }
+    
+  private:
+    // If you want, you can put variables here so that you can remember data from one call to the next.
+    int speed;
+    int angle;
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_DUMMYMOTOR_H */

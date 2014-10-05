@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Desktop
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsUI_SensorMotorLab", "WinFormsUI_SensorMotorLab\WinFormsUI_SensorMotorLab.csproj", "{84653686-BEAB-471E-8EA1-573269BA121A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication", "Communication\Communication.csproj", "{A3206C7E-4F61-4338-88A8-6A88E32C171B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUI", "ConsoleUI\ConsoleUI.csproj", "{59463524-E2F3-4E06-B38D-4CD4F1E20896}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{84653686-BEAB-471E-8EA1-573269BA121A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84653686-BEAB-471E-8EA1-573269BA121A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84653686-BEAB-471E-8EA1-573269BA121A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3206C7E-4F61-4338-88A8-6A88E32C171B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3206C7E-4F61-4338-88A8-6A88E32C171B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3206C7E-4F61-4338-88A8-6A88E32C171B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3206C7E-4F61-4338-88A8-6A88E32C171B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59463524-E2F3-4E06-B38D-4CD4F1E20896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59463524-E2F3-4E06-B38D-4CD4F1E20896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59463524-E2F3-4E06-B38D-4CD4F1E20896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59463524-E2F3-4E06-B38D-4CD4F1E20896}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

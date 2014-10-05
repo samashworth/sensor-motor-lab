@@ -1,36 +1,43 @@
 #include "DummyMotor.h"
 #include "Misc.h"
+#include "Messenger.h"
+
+DummyMotor::DummyMotor() {
+  speed = 0;
+  angle = 0;
+}
 
 void DummyMotor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
-  // TODO @Sam: Implement this
+  Messenger::printMessage("DummyMotor initialize", true);
 }
 
 int DummyMotor::getMaxSpeed()
 {
-  // TODO @Sam: Implement this
-  return 0;
+  //Messenger::printMessage("DummyMotor getMaxSpeed", true);
+  return 10;
 }
 
 int DummyMotor::getSpeed()
 {
-  // TODO @Sam: Implement this
-  return 0;
+  Messenger::printMessage("DummyMotor getSpeed", true);
+  return speed;
 }
 
 void DummyMotor::setSpeed(int rpm)
 {
-  // TODO @Sam: Implement this
+  Messenger::printMessage("DummyMotor setSpeed: " + String(rpm), true);
+  speed = rpm;
 }
 
 void DummyMotor::setAngle(int deg)
 {
-  // TODO @Sam: Implement this
+  Messenger::printMessage("DummyMotor setAngle: " + String(deg), true);
+  angle = deg;
 }
 
 void DummyMotor::doProcessing()
 {
-  // TODO @Sam: Implement this
 }
 
 

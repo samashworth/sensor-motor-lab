@@ -63,6 +63,8 @@
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
@@ -96,6 +98,8 @@
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
@@ -148,6 +152,8 @@
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
@@ -181,6 +187,8 @@
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\Servo\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\libraries</Value>
             <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
@@ -210,6 +218,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Arduino_SensorMotorLab.ino">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Button.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Button.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Messenger.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Messenger.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Misc.h">
@@ -245,10 +265,13 @@
     <Compile Include="Motor.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="IRSensor.cpp">
+    <Compile Include="Potentiometer.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="IRSensor.h">
+    <Compile Include="Potentiometer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MotorInfo.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="RCServoMotor.cpp">
@@ -261,6 +284,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SensorInfo.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SensorMotorBinding.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SonarSensor.cpp">

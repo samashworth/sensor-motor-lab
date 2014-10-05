@@ -19,10 +19,14 @@ extern "C" void __cxa_pure_virtual() {;}
 
 //
 //
+int convertRelativeReadingToSpeed(byte reading, Motor* motor, SensorMotorBinding* sensorMotorBinding);
+int convertRelativeReadingToAngle(byte reading, Motor* motor, SensorMotorBinding* sensorMotorBinding);
 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\arduino.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Arduino_SensorMotorLab.ino"
+#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Button.cpp"
+#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Button.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\DCMotor.cpp"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\DCMotor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\DummyMotor.cpp"
@@ -31,16 +35,18 @@ extern "C" void __cxa_pure_virtual() {;}
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\DummySensor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\ForceSensor.cpp"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\ForceSensor.h"
-#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\IRSensor.cpp"
-#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\IRSensor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Message.h"
+#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Messenger.cpp"
+#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Messenger.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Misc.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Motor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\MotorInfo.h"
-#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\RCServoMotor.cpp"
+#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Potentiometer.cpp"
+#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Potentiometer.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\RCServoMotor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\Sensor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\SensorInfo.h"
+#include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\SensorMotorBinding.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\SonarSensor.cpp"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\SonarSensor.h"
 #include "C:\Users\sam\Documents\GitHub\sensor-motor-lab\Arduino_SensorMotorLab\Arduino_SensorMotorLab\StepperMotor.cpp"
