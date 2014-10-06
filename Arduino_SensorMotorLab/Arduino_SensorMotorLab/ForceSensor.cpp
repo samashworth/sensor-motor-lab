@@ -3,40 +3,40 @@
 
 void ForceSensor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
-  fsrPin = pinIds[0];
+  fsPin = pinIds[0];
 }
 
 float ForceSensor::getReading()
 {
-  fsrVoltage = map(fsrRead, 0, 1023, 0, 5000);
-  if (fsrVoltage == 0) {
-      fsrForce = 0;  
+  fsVoltage = map(fsRead, 0, 1023, 0, 5000);
+  if (fsVoltage == 0) {
+      fsForce = 0;  
     } else {
               
-      fsrResistance = 5000 - fsrVoltage;     // 5V = 5000mV
-      fsrResistance *= 10000;                // 10K ohm resistor
-      fsrResistance /= fsrVoltage;
+      fsResistance = 5000 - fsVoltage;     // 5V = 5000mV
+      fsResistance *= 10000;                // 10K ohm resistor
+      fsResistance /= fsVoltage;
       
    
-      fsrConductance = 1000000;           // micromhos 
-      fsrConductance /= fsrResistance;
+      fsConductance = 1000000;           // micromhos 
+      fsConductance /= fsResistance;
        
-        if (fsrConductance <= 1000) {
-        fsrForce = fsrConductance / 80;            
+        if (fsConductance <= 1000) {
+        fsForce = fsConductance / 80;            
       } else {
-        fsrForce = fsrConductance - 1000;
-        fsrForce /= 30;              
+        fsForce = fsConductance - 1000;
+        fsForce /= 30;              
       }
     }
-  return fsrForce;
+  return fsForce;
 }
 
 byte ForceSensor::getRelativeReading()
 {
-  fsrForceRead = ForceSensor::getReading();
-  fsrRelative = map(fsrForceRead, 0, 7, 0, 255);
+  fsForceRead = ForceSensor::getReading();
+  fsRelative = map(fsForceRead, 0, 7, 0, 255);
   
-  return fsrRelative;
+  return fsRelative;
 }
 
 SensorInfo ForceSensor::getSensorInfo() 
@@ -52,7 +52,7 @@ SensorInfo ForceSensor::getSensorInfo()
 
 void ForceSensor::doProcessing()
 {
-  fsrRead = analogRead(fsrPin); 
+  fsRead = analogRead(fsPin); 
   
 }
 

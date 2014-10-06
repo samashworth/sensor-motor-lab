@@ -23,14 +23,14 @@ class ForceSensor : public Sensor {
   private:
     // If you want, you can put variables here so that you can remember data from one call to the next.
     byte testVar;
-    int fsrRead;
-    int fsrPin;    
-    int fsrVoltage;     
-    unsigned long fsrResistance;
-    unsigned long fsrConductance; 
-    long fsrForce;
-    int fsrRelative;
-    int fsrForceRead;
+    int fsRead;
+    int fsPin;    
+    int fsVoltage;     
+    unsigned long fsResistance;
+    unsigned long fsConductance; 
+    long fsForce;
+    int fsRelative;
+    int fsForceRead;
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_FORCESENSOR_H */
