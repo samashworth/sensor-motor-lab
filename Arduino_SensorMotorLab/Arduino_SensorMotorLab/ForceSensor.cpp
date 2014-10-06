@@ -28,22 +28,24 @@ float ForceSensor::getReading()
         fsrForce /= 30;              
       }
     }
-  return 0.0;
+  return fsrForce;
 }
 
 byte ForceSensor::getRelativeReading()
 {
-  // TODO @Sowmya: Implement this.
-  return 0;
+  fsrForceRead = ForceSensor::getReading();
+  fsrRelative = map(fsrForceRead, 0, 7, 0, 255);
+  
+  return fsrRelative;
 }
 
 SensorInfo ForceSensor::getSensorInfo() 
 {
-  // TODO @Sowmya: Implement this.
+  
   SensorInfo SensorInfo;
   SensorInfo.units = NEWTON;
   SensorInfo.minReading = 0;
-  SensorInfo.maxReading = 0;
+  SensorInfo.maxReading = 8;
   
   return SensorInfo;
 }

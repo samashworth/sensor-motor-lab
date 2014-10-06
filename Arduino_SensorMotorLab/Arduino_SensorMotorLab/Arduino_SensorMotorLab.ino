@@ -81,6 +81,9 @@ void setup() {
 	pinIds[0] = 4;
 	pinIds[1] = 5;
 	dummyMotor.initialize(2, pinIds, 0, interruptIds);
+
+        pinIds[0] = 0;
+        forceSensor.initialize(1,pinIds,0,interruptIds);
 	
 	// Dummy sensor initialization
 	Messenger::printMessage("Initialize dummy sensor", true);

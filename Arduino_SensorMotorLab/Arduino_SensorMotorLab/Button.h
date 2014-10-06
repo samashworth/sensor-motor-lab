@@ -24,7 +24,15 @@ class Button {
     Returns true if a button press occurred between the last invocation of this function and the present invocation.
     This function will be called on every iteration of the main loop.
     */
-    boolean pressOccurred();    
+    boolean pressOccurred();
+    
+    boolean debounce(boolean last, int button);
+
+    private:
+    int button;
+    boolean buttonState;
+    boolean lastButtonState;
+    boolean currentButtonState;   
 };
 
 

@@ -29,6 +29,8 @@ class ForceSensor : public Sensor {
     unsigned long fsrResistance;
     unsigned long fsrConductance; 
     long fsrForce;
+    int fsrRelative;
+    int fsrForceRead;
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_FORCESENSOR_H */
