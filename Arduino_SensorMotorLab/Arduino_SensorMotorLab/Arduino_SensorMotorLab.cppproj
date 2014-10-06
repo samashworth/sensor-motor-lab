@@ -274,9 +274,6 @@
     <Compile Include="MotorInfo.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="RCServoMotor.cpp">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="RCServoMotor.h">
       <SubType>compile</SubType>
     </Compile>
