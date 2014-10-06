@@ -18,8 +18,8 @@ void SonarSensor::initialize(int numPins, int pinIds[], int numInterrupts, int i
 float SonarSensor::getReading()
 {
 	// Returns reading up to 67cm. Calibrated on desktop.
-        //Messenger::printMessage("Sonar Reading: " + String(runningAverageRaw), false);
-        int reading = map(runningAverageRaw,0,80,0,maxRange);
+        Messenger::printMessage("Sonar Reading: " + String(runningAverageRaw), false);
+        int reading = map(runningAverageRaw,11,80,15,maxRange);
         //Messenger::printMessage("Sonar Value: " + String(reading), false);
 	return reading;
 }
@@ -27,7 +27,7 @@ float SonarSensor::getReading()
 byte SonarSensor::getRelativeReading()
 {
 	// Returns the averaged reading calculated in doProcessing
-        int relReading = map(constrain(runningAverageRaw,16,45),16,45,0,255);
+        int relReading = map(constrain(runningAverageRaw,11,45),11,45,0,255);
 	return relReading;
 }
 

@@ -67,21 +67,40 @@ void setup() {
 	// to which sensors.
 	// TODO @Sam: Initialize all sensors and motors.
 	
+      //motor- 2 A, 2int(D2-3), 1dig
+        Messenger::printMessage("Initialize DC Motor", true);
+        pinIds[0] = 2;
+        pinIds[1] = 3;
+        pinIds[2] = A3;
+        pinIds[3] = A4;
+        pinIds[4] = 8;
+        interruptIds[0] = 2;
+        interruptIds[1] = 3;
+        sonarSensor.initialize(5, pinIds, 0, interruptIds);
+      
         Messenger::printMessage("Initialize Sonar", true);
-        pinIds[0] = 1;
+        pinIds[0] = A1;
         sonarSensor.initialize(1, pinIds, 0, interruptIds);
         
         Messenger::printMessage("Initialize Servo", true);
-        pinIds[0] = 9;
+        pinIds[0] = 10;
         rcServoMotor.initialize(1, pinIds, 0, interruptIds);
         
+        Messenger::printMessage("Initialize Thermistor", true);
+        pinIds[0] = A2;
+        thermistor.initialize(1, pinIds, 0, interruptIds);
+        
+        Messenger::printMessage("Initialize Stepper Motor", true);
+        pinIds[0] = 11;
+        stepperMotor.initialize(1, pinIds, 0, interruptIds);   
         
 	// Dummy motor initialization
-  Messenger::printMessage("Initialize dummy motor", true);
+        Messenger::printMessage("Initialize dummy motor", true);
 	pinIds[0] = 4;
 	pinIds[1] = 5;
 	dummyMotor.initialize(2, pinIds, 0, interruptIds);
-
+        
+        Messenger::printMessage("Initialize Force Sensor", true);
         pinIds[0] = 0;
         forceSensor.initialize(1,pinIds,0,interruptIds);
 	
