@@ -3,6 +3,8 @@
 
 #include "Sensor.h"
 
+#define ROLLING_AVERAGE_LENGTH 5
+
 /*
 Represents a range sensor.
 */
@@ -24,9 +26,8 @@ class SonarSensor : public Sensor {
 	// If you want, you can put variables here so that you can remember data from one call to the next.
 	int sonarPin;
         int runningAverageRaw;
-        int rollingAverageLength;
         int maxRange;
-        int smooth[3];
+        int smooth[ROLLING_AVERAGE_LENGTH];
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_SONARSENSOR_H */

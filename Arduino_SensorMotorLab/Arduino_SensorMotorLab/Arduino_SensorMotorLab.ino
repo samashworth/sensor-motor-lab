@@ -67,6 +67,15 @@ void setup() {
 	// to which sensors.
 	// TODO @Sam: Initialize all sensors and motors.
 	
+        Messenger::printMessage("Initialize Sonar", true);
+        pinIds[0] = 1;
+        sonarSensor.initialize(1, pinIds, 0, interruptIds);
+        
+        Messenger::printMessage("Initialize Servo", true);
+        pinIds[0] = 9;
+        rcServoMotor.initialize(1, pinIds, 0, interruptIds);
+        
+        
 	// Dummy motor initialization
   Messenger::printMessage("Initialize dummy motor", true);
 	pinIds[0] = 4;

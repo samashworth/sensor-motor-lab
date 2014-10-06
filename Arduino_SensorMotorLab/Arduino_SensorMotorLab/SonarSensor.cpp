@@ -5,9 +5,8 @@
 void SonarSensor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
         //set constants
-        rollingAverageLength = 5;
-        maxRange = 1200;
-        smooth[rollingAverageLength];
+        maxRange = 120;
+        smooth[ROLLING_AVERAGE_LENGTH];
         
         //set pins
         if (numPins != 1){
@@ -19,13 +18,17 @@ void SonarSensor::initialize(int numPins, int pinIds[], int numInterrupts, int i
 float SonarSensor::getReading()
 {
 	// Returns reading up to 67cm. Calibrated on desktop.
-	return map(runningAverageRaw,0,80,0,maxRange);
+        //Messenger::printMessage("Sonar Reading: " + String(runningAverageRaw), false);
+        int reading = map(runningAverageRaw,0,80,0,maxRange);
+        //Messenger::printMessage("Sonar Value: " + String(reading), false);
+	return reading;
 }
 
 byte SonarSensor::getRelativeReading()
 {
 	// Returns the averaged reading calculated in doProcessing
-	return runningAverageRaw;
+        int relReading = map(constrain(runningAverageRaw,16,45),16,45,0,255);
+	return relReading;
 }
 
 SensorInfo SonarSensor::getSensorInfo()
@@ -47,18 +50,18 @@ void SonarSensor::doProcessing()
         
         
         //get rolling average and store in runningAverageRaw
-        for (int i = rollingAverageLength;i>1;i--)
+        for (int i = ROLLING_AVERAGE_LENGTH;i>1;i--)
         {
             smooth[i-1] = smooth[i-2];
         }
         smooth[0] = rawValue; //place current value at front of list
         int subtotal = 0;
-        for (int j = 0; j< (rollingAverageLength) ; j++)
+        for (int j = 0; j< (ROLLING_AVERAGE_LENGTH) ; j++)
         {
             subtotal += smooth[j];
         }
-        runningAverageRaw = subtotal / rollingAverageLength;
+        runningAverageRaw = subtotal / ROLLING_AVERAGE_LENGTH;
         //would be nice but library probably doesn't meet class (dolan's) requirements
-        //runningAverageRaw = rollingAverage(smooth,rollingAverageLength,rawValue);
+        //runningAverageRaw = rollingAverage(smooth,ROLLING_AVERAGE_LENGTH,rawValue);
 }
 

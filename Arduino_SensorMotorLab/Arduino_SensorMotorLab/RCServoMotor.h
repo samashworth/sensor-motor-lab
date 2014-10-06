@@ -26,6 +26,8 @@ class RCServoMotor : public Motor {
 
     virtual void doProcessing();
     
+    virtual int getAngle(); 
+    
     virtual MotorType getMotorType() { return RC_SERVO_MOTOR; }
     
   private:
@@ -36,7 +38,6 @@ class RCServoMotor : public Motor {
 
 void RCServoMotor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
-  Servo servoMotor; //create servo object
   if (numPins != 1){
     Messenger::reportError("ERROR in Servo Motor Control: Number of pins recieved is different than expected");
   }
@@ -52,8 +53,14 @@ int RCServoMotor::getMaxSpeed()
 
 int RCServoMotor::getSpeed()
 {
-  // returns angle- no speed settings enabeled for this device
-  return servoMotor.read();
+  // returns nothing at this time
+  return 0;
+}
+
+int RCServoMotor::getAngle()
+{
+    // returns angle from motor
+    return servoMotor.read();
 }
 
 void RCServoMotor::setSpeed(int rpm)
@@ -64,6 +71,7 @@ void RCServoMotor::setSpeed(int rpm)
 void RCServoMotor::setAngle(int deg)
 {
   // input is angle from 0 to 180, 90 is center position
+  //Messenger::printMessage("Servo Angle: " + String(deg),false);
   servoMotor.write(deg);
 }
 
