@@ -93,6 +93,10 @@ namespace WinFormsUI_SensorMotorLab
         {
             if (_radioButtonManual.Checked)
             {
+                foreach (Control control in _groupBoxManual.Controls)
+                {
+                    control.Enabled = true;
+                }
                 foreach (Control control in _groupBoxSensor.Controls)
                 {
                     control.Enabled = false;
@@ -103,6 +107,10 @@ namespace WinFormsUI_SensorMotorLab
                 foreach (Control control in _groupBoxManual.Controls)
                 {
                     control.Enabled = false;
+                }
+                foreach (Control control in _groupBoxSensor.Controls)
+                {
+                    control.Enabled = true;
                 }
             }
         }
