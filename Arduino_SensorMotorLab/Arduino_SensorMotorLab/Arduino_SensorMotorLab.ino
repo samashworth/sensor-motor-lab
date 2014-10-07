@@ -80,6 +80,14 @@ void setup() {
         interruptIds[0] = 2;
         interruptIds[1] = 3;
         sonarSensor.initialize(5, pinIds, 0, interruptIds);
+        
+        Messenger::printMessage("Initialize Pot", true);
+        pinIds[0] = A5;
+        potentiometer.initialize(1, pinIds, 0, interruptIds);
+        
+        Messenger::printMessage("Initialize Button", true);
+        pinIds[0] = 3;
+        button.initialize(1, pinIds, 0, interruptIds);
       
         Messenger::printMessage("Initialize Sonar", true);
         pinIds[0] = A1;
