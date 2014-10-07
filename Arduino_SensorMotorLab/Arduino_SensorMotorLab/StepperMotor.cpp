@@ -5,7 +5,7 @@
 void StepperMotor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
     stepperPin = pinIds[0];
-    dirctionPin = pinIds[1];
+    directionPin = pinIds[1];
     pinMode(stepperPin,OUTPUT);
     pinMode(directionPin,OUTPUT);
     currentSpeed = 0;

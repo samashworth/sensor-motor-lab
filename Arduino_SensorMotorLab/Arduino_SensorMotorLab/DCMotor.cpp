@@ -10,12 +10,12 @@ void DCMotor::initialize(int numPins, int pinIds[], int numInterrupts, int inter
  pwm_value=0;
  speed_reqd=0;
  
- motor_l1=pinIds(2); 
- motor_l2=pinIds(3);
- motor_enable=pinIds(4);
+ motor_l1=pinIds[2]; 
+ motor_l2=pinIds[3];
+ motor_enable=pinIds[4];
  
- c_LeftEncoderPinA=pinIds(0);
- c_LeftEncoderPinB=pinIds(1);
+ c_LeftEncoderPinA=pinIds[0];
+ c_LeftEncoderPinB=pinIds[1];
  c_LeftEncoderInterruptA=interruptIds[0];
  c_LeftEncoderInterruptB=interruptIds[1];
  _LeftEncoderTicks=0;
@@ -26,8 +26,8 @@ void DCMotor::initialize(int numPins, int pinIds[], int numInterrupts, int inter
  pinMode(c_LeftEncoderPinB, INPUT);      // sets pin B as input
  digitalWrite(c_LeftEncoderPinB, LOW);// turn on pullup resistors
 
- attachInterrupt(c_LeftEncoderInterruptA, HandleLeftMotorInterruptA, CHANGE);
- attachInterrupt(c_LeftEncoderInterruptB, HandleLeftMotorInterruptB, CHANGE);
+ //attachInterrupt(c_LeftEncoderInterruptA, DCMotor::HandleLeftMotorInterruptA, CHANGE);
+ //attachInterrupt(c_LeftEncoderInterruptB, DCMotor::HandleLeftMotorInterruptB, CHANGE);
  
  }
 
