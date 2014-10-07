@@ -41,6 +41,11 @@
             this._tabPageSonar = new System.Windows.Forms.TabPage();
             this._tabPageThermistor = new System.Windows.Forms.TabPage();
             this._tabPageDummySensor = new System.Windows.Forms.TabPage();
+            this._labelComPort = new System.Windows.Forms.Label();
+            this._comboBoxPorts = new System.Windows.Forms.ComboBox();
+            this._buttonConnect = new System.Windows.Forms.Button();
+            this._labelConnectionStatus = new System.Windows.Forms.Label();
+            this._buttonRefresh = new System.Windows.Forms.Button();
             this.debugControl1 = new WinFormsUI_SensorMotorLab.DebugControl();
             this._sensorControlForce = new WinFormsUI_SensorMotorLab.SensorControl();
             this._sensorControlPotentiometer = new WinFormsUI_SensorMotorLab.SensorControl();
@@ -73,7 +78,7 @@
             this._tabControlMotor.Location = new System.Drawing.Point(12, 12);
             this._tabControlMotor.Name = "_tabControlMotor";
             this._tabControlMotor.SelectedIndex = 0;
-            this._tabControlMotor.Size = new System.Drawing.Size(323, 464);
+            this._tabControlMotor.Size = new System.Drawing.Size(323, 353);
             this._tabControlMotor.TabIndex = 0;
             // 
             // _tabPageDCMotor
@@ -82,7 +87,7 @@
             this._tabPageDCMotor.Location = new System.Drawing.Point(4, 22);
             this._tabPageDCMotor.Name = "_tabPageDCMotor";
             this._tabPageDCMotor.Padding = new System.Windows.Forms.Padding(3);
-            this._tabPageDCMotor.Size = new System.Drawing.Size(315, 438);
+            this._tabPageDCMotor.Size = new System.Drawing.Size(315, 327);
             this._tabPageDCMotor.TabIndex = 0;
             this._tabPageDCMotor.Text = "DC";
             this._tabPageDCMotor.UseVisualStyleBackColor = true;
@@ -93,7 +98,7 @@
             this._tabPageServo.Location = new System.Drawing.Point(4, 22);
             this._tabPageServo.Name = "_tabPageServo";
             this._tabPageServo.Padding = new System.Windows.Forms.Padding(3);
-            this._tabPageServo.Size = new System.Drawing.Size(315, 438);
+            this._tabPageServo.Size = new System.Drawing.Size(315, 327);
             this._tabPageServo.TabIndex = 1;
             this._tabPageServo.Text = "Servo";
             this._tabPageServo.UseVisualStyleBackColor = true;
@@ -104,7 +109,7 @@
             this._tabPageStepper.Location = new System.Drawing.Point(4, 22);
             this._tabPageStepper.Name = "_tabPageStepper";
             this._tabPageStepper.Padding = new System.Windows.Forms.Padding(3);
-            this._tabPageStepper.Size = new System.Drawing.Size(315, 438);
+            this._tabPageStepper.Size = new System.Drawing.Size(315, 327);
             this._tabPageStepper.TabIndex = 2;
             this._tabPageStepper.Text = "Stepper";
             this._tabPageStepper.UseVisualStyleBackColor = true;
@@ -115,7 +120,7 @@
             this._tabPageDummyMotor.Location = new System.Drawing.Point(4, 22);
             this._tabPageDummyMotor.Name = "_tabPageDummyMotor";
             this._tabPageDummyMotor.Padding = new System.Windows.Forms.Padding(3);
-            this._tabPageDummyMotor.Size = new System.Drawing.Size(315, 438);
+            this._tabPageDummyMotor.Size = new System.Drawing.Size(315, 327);
             this._tabPageDummyMotor.TabIndex = 3;
             this._tabPageDummyMotor.Text = "Dummy";
             this._tabPageDummyMotor.UseVisualStyleBackColor = true;
@@ -187,6 +192,53 @@
             this._tabPageDummySensor.TabIndex = 4;
             this._tabPageDummySensor.Text = "Dummy";
             this._tabPageDummySensor.UseVisualStyleBackColor = true;
+            // 
+            // _labelComPort
+            // 
+            this._labelComPort.AutoSize = true;
+            this._labelComPort.Location = new System.Drawing.Point(9, 380);
+            this._labelComPort.Name = "_labelComPort";
+            this._labelComPort.Size = new System.Drawing.Size(56, 13);
+            this._labelComPort.TabIndex = 3;
+            this._labelComPort.Text = "COM Port:";
+            // 
+            // _comboBoxPorts
+            // 
+            this._comboBoxPorts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._comboBoxPorts.FormattingEnabled = true;
+            this._comboBoxPorts.Location = new System.Drawing.Point(71, 377);
+            this._comboBoxPorts.Name = "_comboBoxPorts";
+            this._comboBoxPorts.Size = new System.Drawing.Size(92, 21);
+            this._comboBoxPorts.TabIndex = 4;
+            // 
+            // _buttonConnect
+            // 
+            this._buttonConnect.Location = new System.Drawing.Point(260, 375);
+            this._buttonConnect.Name = "_buttonConnect";
+            this._buttonConnect.Size = new System.Drawing.Size(75, 23);
+            this._buttonConnect.TabIndex = 5;
+            this._buttonConnect.Text = "Connect";
+            this._buttonConnect.UseVisualStyleBackColor = true;
+            this._buttonConnect.Click += new System.EventHandler(this._buttonConnect_Click);
+            // 
+            // _labelConnectionStatus
+            // 
+            this._labelConnectionStatus.AutoSize = true;
+            this._labelConnectionStatus.Location = new System.Drawing.Point(68, 401);
+            this._labelConnectionStatus.Name = "_labelConnectionStatus";
+            this._labelConnectionStatus.Size = new System.Drawing.Size(35, 13);
+            this._labelConnectionStatus.TabIndex = 6;
+            this._labelConnectionStatus.Text = "label1";
+            // 
+            // _buttonRefresh
+            // 
+            this._buttonRefresh.Location = new System.Drawing.Point(169, 377);
+            this._buttonRefresh.Name = "_buttonRefresh";
+            this._buttonRefresh.Size = new System.Drawing.Size(53, 23);
+            this._buttonRefresh.TabIndex = 7;
+            this._buttonRefresh.Text = "Refresh";
+            this._buttonRefresh.UseVisualStyleBackColor = true;
+            this._buttonRefresh.Click += new System.EventHandler(this._buttonRefresh_Click);
             // 
             // debugControl1
             // 
@@ -286,6 +338,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 499);
+            this.Controls.Add(this._buttonRefresh);
+            this.Controls.Add(this._labelConnectionStatus);
+            this.Controls.Add(this._buttonConnect);
+            this.Controls.Add(this._comboBoxPorts);
+            this.Controls.Add(this._labelComPort);
             this.Controls.Add(this.debugControl1);
             this.Controls.Add(this._tabControlSensor);
             this.Controls.Add(this._tabControlMotor);
@@ -303,6 +360,7 @@
             this._tabPageThermistor.ResumeLayout(false);
             this._tabPageDummySensor.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -329,6 +387,11 @@
         private System.Windows.Forms.TabPage _tabPageDummySensor;
         private SensorControl _sensorControlDummy;
         private DebugControl debugControl1;
+        private System.Windows.Forms.Label _labelComPort;
+        private System.Windows.Forms.ComboBox _comboBoxPorts;
+        private System.Windows.Forms.Button _buttonConnect;
+        private System.Windows.Forms.Label _labelConnectionStatus;
+        private System.Windows.Forms.Button _buttonRefresh;
     }
 }
 

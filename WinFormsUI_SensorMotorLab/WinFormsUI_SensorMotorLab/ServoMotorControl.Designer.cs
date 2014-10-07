@@ -76,6 +76,7 @@
             // 
             // _comboBoxSensor
             // 
+            this._comboBoxSensor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboBoxSensor.FormattingEnabled = true;
             this._comboBoxSensor.Location = new System.Drawing.Point(110, 20);
             this._comboBoxSensor.Name = "_comboBoxSensor";

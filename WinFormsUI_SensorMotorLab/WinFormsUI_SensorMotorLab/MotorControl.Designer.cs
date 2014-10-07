@@ -44,6 +44,7 @@
             this._radioButtonSensor = new System.Windows.Forms.RadioButton();
             this._labelControl = new System.Windows.Forms.Label();
             this._groupBoxSensor = new System.Windows.Forms.GroupBox();
+            this._buttonSensorControlSet = new System.Windows.Forms.Button();
             this._groupBoxManual = new System.Windows.Forms.GroupBox();
             this._buttonAngleSet = new System.Windows.Forms.Button();
             this._buttonSpeedSet = new System.Windows.Forms.Button();
@@ -56,7 +57,6 @@
             this._labelSpeed = new System.Windows.Forms.Label();
             this._textBoxSpeed = new System.Windows.Forms.TextBox();
             this._labelRpm2 = new System.Windows.Forms.Label();
-            this._buttonSensorControlSet = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -85,6 +85,7 @@
             // 
             // _comboBoxSensor
             // 
+            this._comboBoxSensor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboBoxSensor.FormattingEnabled = true;
             this._comboBoxSensor.Location = new System.Drawing.Point(110, 20);
             this._comboBoxSensor.Name = "_comboBoxSensor";
@@ -103,6 +104,7 @@
             // _radioButtonCCW
             // 
             this._radioButtonCCW.AutoSize = true;
+            this._radioButtonCCW.Checked = true;
             this._radioButtonCCW.Location = new System.Drawing.Point(3, 3);
             this._radioButtonCCW.Name = "_radioButtonCCW";
             this._radioButtonCCW.Size = new System.Drawing.Size(50, 17);
@@ -229,6 +231,16 @@
             this._groupBoxSensor.TabStop = false;
             this._groupBoxSensor.Text = "Sensor";
             // 
+            // _buttonSensorControlSet
+            // 
+            this._buttonSensorControlSet.Location = new System.Drawing.Point(189, 76);
+            this._buttonSensorControlSet.Name = "_buttonSensorControlSet";
+            this._buttonSensorControlSet.Size = new System.Drawing.Size(75, 23);
+            this._buttonSensorControlSet.TabIndex = 9;
+            this._buttonSensorControlSet.Text = "Apply";
+            this._buttonSensorControlSet.UseVisualStyleBackColor = true;
+            this._buttonSensorControlSet.Click += new System.EventHandler(this._buttonSensorControlSet_Click);
+            // 
             // _groupBoxManual
             // 
             this._groupBoxManual.Controls.Add(this._buttonAngleSet);
@@ -341,16 +353,6 @@
             this._labelRpm2.Size = new System.Drawing.Size(24, 13);
             this._labelRpm2.TabIndex = 7;
             this._labelRpm2.Text = "rpm";
-            // 
-            // _buttonSensorControlSet
-            // 
-            this._buttonSensorControlSet.Location = new System.Drawing.Point(189, 76);
-            this._buttonSensorControlSet.Name = "_buttonSensorControlSet";
-            this._buttonSensorControlSet.Size = new System.Drawing.Size(75, 23);
-            this._buttonSensorControlSet.TabIndex = 9;
-            this._buttonSensorControlSet.Text = "Apply";
-            this._buttonSensorControlSet.UseVisualStyleBackColor = true;
-            this._buttonSensorControlSet.Click += new System.EventHandler(this._buttonSensorControlSet_Click);
             // 
             // MotorControl
             // 
