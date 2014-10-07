@@ -20,11 +20,34 @@ class DCMotor : public Motor {
 	
     virtual void doProcessing();
     
-    virtual MotorType getMotorType() { return DC_MOTOR; }
-    
+       
   private:
 		// If you want, you can put variables here so that you can remember data from one call to the next.
-		byte testVar;
+		void HandleLeftMotorInterruptA();
+                void HandleLeftMotorInterruptB();
+                int ParseEncoder();
+                int computePID(int pwm_value, int Speed, int speed_reqd);
+                
+                int Position;
+                int Speed;
+                int pwm_value;
+                int speed_reqd;
+                
+                int motor_l1;
+                int motor_l2;
+                int motor_enable;
+                
+                int c_LeftEncoderPinA;
+                int c_LeftEncoderPinB;
+                int c_LeftEncoderInterruptA;
+                int c_LeftEncoderInterruptB;
+                
+                volatile bool _LeftEncoderASet;
+                volatile bool _LeftEncoderBSet;
+                volatile bool _LeftEncoderAPrev;
+                volatile bool _LeftEncoderBPrev;
+                volatile long _LeftEncoderTicks;
+                
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_DCMOTOR_H */
