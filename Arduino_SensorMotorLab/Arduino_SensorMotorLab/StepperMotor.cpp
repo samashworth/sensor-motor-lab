@@ -40,7 +40,14 @@ void StepperMotor::setSpeed(int rpm)
 
 void StepperMotor::setAngle(int deg)
 {
-  int steps = deg*10/18;      // calculate the number of steps to rotate
+  if (deg < 0) {
+    digitalWrite(directionPin,HIGH);
+    int steps = abs(deg)*10/18;      // calculate the number of steps to rotate
+  }
+  else {
+    digitalWrite(directionPin,LOW);
+    int steps = deg*10/18;      // calculate the number of steps to rotate
+  }
   setSpeed(6);                // always do the angle rotation at the slowest speed (6rpm = .1 rot/s)
   for(int i=0;i<steps;i++) {  // rotate the appropriate number of steps
     doProcessing();
