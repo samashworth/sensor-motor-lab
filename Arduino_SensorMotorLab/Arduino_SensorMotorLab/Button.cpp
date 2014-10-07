@@ -9,14 +9,14 @@ void Button::initialize(int numPins, int pinIds[], int numInterrupts, int interr
   buttonState = LOW;
   lastButtonState = LOW;
   currentButtonState = LOW;
-  
-  
 }
 
 boolean Button::pressOccurred()
 {
-  currentButtonState = debounce(lastButtonState, button);
+  boolean currentButtonState = digitalRead(button);
   if(currentButtonState == HIGH && lastButtonState == LOW){
+      //currentButtonState = debounce(lastButtonState, button);
+      delay(100);
       buttonState = HIGH;
       lastButtonState = currentButtonState;
       Messenger::printMessage("Button Pressed!", false);
@@ -24,6 +24,7 @@ boolean Button::pressOccurred()
     } 
     else{
        buttonState = LOW;
+       lastButtonState = LOW;
      }
   return buttonState;
  
@@ -34,7 +35,7 @@ boolean Button::debounce(boolean last, int button)
   boolean current = digitalRead(button);
   if (last != current)
   {
-    delay(5);
+    delay(100);
     current = digitalRead(button);
   }
   return current;
