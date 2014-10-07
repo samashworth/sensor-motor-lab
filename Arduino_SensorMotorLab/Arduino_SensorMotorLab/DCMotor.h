@@ -51,6 +51,8 @@ class DCMotor : public Motor {
                 volatile bool _LeftEncoderBPrev;
                 volatile long _LeftEncoderTicks;
                 
+                long lastPrintMessageTime;
+                
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_DCMOTOR_H */

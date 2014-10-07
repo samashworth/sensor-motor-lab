@@ -3,6 +3,7 @@
 
 void DCMotor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
+  lastPrintMessageTime = 0;
   // TODO @Sonali: Implement this.
   //check pinIds again
  Position=0;
@@ -48,7 +49,16 @@ int DCMotor::getSpeed()
 
 void DCMotor::setSpeed(int rpm)
 {
-  
+  if(rpm<0)
+  {
+  analogWrite(motor_l1,0);
+  analogWrite(motor_l2,255);
+  }
+  else if (rpm>0)
+  {
+  analogWrite(motor_l1,255);
+  analogWrite(motor_l2,0);
+  }
   speed_set=rpm;
 }
 
@@ -69,22 +79,18 @@ void DCMotor::setAngle(int deg)
   analogWrite(motor_enable,255);
   while (abs(_LeftEncoderTicks*0.5)<abs(deg));
   analogWrite(motor_enable,0);
-  delay(20); //what is this for??
+  delay(200);//what is this for??
 }
 
 void DCMotor::doProcessing()
 { 
   Speed=getSpeed();
-  if(speed_set<0)
-  {
-  analogWrite(motor_l1,0);
-  analogWrite(motor_l2,255);
+  long currentTime = millis();
+  if (currentTime - lastPrintMessageTime > 1000) {
+    lastPrintMessageTime = currentTime;
+    Messenger::printMessage("DCMotor speed: " + String(Speed), false);
   }
-  else if (speed_set>0)
-  {
-  analogWrite(motor_l1,255);
-  analogWrite(motor_l2,0);
-  }
+  
   pwm_value=computePID(pwm_value,abs(Speed),abs(speed_set)); 
   analogWrite(motor_enable,pwm_value);
 
