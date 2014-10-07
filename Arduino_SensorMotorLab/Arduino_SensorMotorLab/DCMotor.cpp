@@ -8,7 +8,7 @@ void DCMotor::initialize(int numPins, int pinIds[], int numInterrupts, int inter
  Position=0;
  Speed=0;
  pwm_value=0;
- speed_reqd=0;
+ speed_set=0;
  
  motor_l1=pinIds[2]; 
  motor_l2=pinIds[3];
@@ -49,12 +49,13 @@ int DCMotor::getSpeed()
 void DCMotor::setSpeed(int rpm)
 {
   
-  speed_reqd=rpm;
+  speed_set=rpm;
 }
 
 void DCMotor::setAngle(int deg)
 {
-   setSpeed(0);  
+   setSpeed(0);
+   _LeftEncoderTicks=0;  
    if(deg<0)
   {
   analogWrite(motor_l1,0);
@@ -74,17 +75,17 @@ void DCMotor::setAngle(int deg)
 void DCMotor::doProcessing()
 { 
   Speed=getSpeed();
-  if(speed_reqd<0)
+  if(speed_set<0)
   {
   analogWrite(motor_l1,0);
   analogWrite(motor_l2,255);
   }
-  else if (speed_reqd>0)
+  else if (speed_set>0)
   {
   analogWrite(motor_l1,255);
   analogWrite(motor_l2,0);
   }
-  pwm_value=computePID(pwm_value,abs(Speed),abs(speed_reqd)); 
+  pwm_value=computePID(pwm_value,abs(Speed),abs(speed_set)); 
   analogWrite(motor_enable,pwm_value);
 
 }

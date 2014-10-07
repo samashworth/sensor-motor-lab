@@ -34,7 +34,7 @@ class DCMotor : public Motor {
                 int Position;
                 int Speed;
                 int pwm_value;
-                int speed_reqd;
+                int speed_set;
                 
                 int motor_l1;
                 int motor_l2;
