@@ -3,19 +3,19 @@
 
 void Potentiometer::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
-  // TODO @Sonali: Implement this.
+  potPin = pinIds[0];
 }
 
 float Potentiometer::getReading()
 {
-  // TODO @Sonali: Implement this.
-  return 0.0;
+  potReading = map(potVal, 0, 1023, 0, 270);
+  return potReading;
 }
 
 byte Potentiometer::getRelativeReading()
 {
-  // TODO @Sonali: Implement this.
-  return 0;
+  potRelative = map(potVal, 0, 1023, 0, 255);
+  return potRelative;
 }
 
 SensorInfo Potentiometer::getSensorInfo() 
@@ -24,13 +24,13 @@ SensorInfo Potentiometer::getSensorInfo()
   SensorInfo SensorInfo;
   SensorInfo.units = CENTIMETER;
   SensorInfo.minReading = 0;
-  SensorInfo.maxReading = 0;
+  SensorInfo.maxReading = 270;
   
   return SensorInfo;
 }
 
 void Potentiometer::doProcessing()
 {
-  // TODO @Sonali: Implement this.
+  potVal = analogRead(potPin);
 }
 

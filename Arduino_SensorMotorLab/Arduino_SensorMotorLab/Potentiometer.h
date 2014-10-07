@@ -22,7 +22,10 @@ class Potentiometer : public Sensor {
     
   private:
     // If you want, you can put variables here so that you can remember data from one call to the next.
-    byte testVar;
+    int potVal;
+    int potReading;
+    int potRelative;
+    int potPin;
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_Potentiometer_H */
