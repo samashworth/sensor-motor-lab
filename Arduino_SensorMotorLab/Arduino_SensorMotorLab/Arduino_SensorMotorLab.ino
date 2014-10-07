@@ -52,6 +52,9 @@ Message message;
 long lastPollTime = 0;
 long pollingInterval_ms = 2000; // milliseconds
 
+long lastRelativeReadingReportTime = 0;
+long relativeReadingReportInterval = 1000;
+
 #define MAX_RELATIVE_READING 255
 
 
@@ -249,8 +252,14 @@ int convertRelativeReadingToSpeed(byte reading, Motor* motor, SensorMotorBinding
 }
 
 int convertRelativeReadingToAngle(byte reading, Motor* motor, SensorMotorBinding* sensorMotorBinding) {
-  int angle = 360 * reading / MAX_RELATIVE_READING;
-  if (sensorMotorBinding->direction == CW)
-    angle *= -1;
+  int angle = (int)map(reading, 0, 255, 0, 180);
+  long currentTime = millis();
+  if (currentTime - lastRelativeReadingReportTime > relativeReadingReportInterval) {
+    lastRelativeReadingReportTime = currentTime;
+    Messenger::printMessage("relative reading: " + String(reading), true);
+    Messenger::printMessage("angle: " + String(angle), true);
+  }    
+  //if (sensorMotorBinding->direction == CW)
+    //angle *= -1;
   return angle;
 }
