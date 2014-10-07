@@ -4,7 +4,7 @@
 
 void Thermistor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
-  // Nothing to do
+  temperaturePin = pinIds[0];
 }
 
 float Thermistor::getReading()
