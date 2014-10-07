@@ -81,6 +81,7 @@ void setup() {
         interruptIds[1] = 3;
         sonarSensor.initialize(5, pinIds, 0, interruptIds);
         
+        
         Messenger::printMessage("Initialize Pot", true);
         pinIds[0] = A5;
         potentiometer.initialize(1, pinIds, 0, interruptIds);
@@ -103,6 +104,7 @@ void setup() {
         
         Messenger::printMessage("Initialize Stepper Motor", true);
         pinIds[0] = 11;
+        pinIds[1] = 12;
         stepperMotor.initialize(1, pinIds, 0, interruptIds);   
         
 	// Dummy motor initialization

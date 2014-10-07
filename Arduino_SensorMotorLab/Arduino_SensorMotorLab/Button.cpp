@@ -1,4 +1,6 @@
 #include "Button.h"
+#include "Messenger.h"
+
 
 void Button::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
@@ -17,6 +19,8 @@ boolean Button::pressOccurred()
   if(currentButtonState == HIGH && lastButtonState == LOW){
       buttonState = HIGH;
       lastButtonState = currentButtonState;
+      Messenger::printMessage("Button Pressed!", false);
+
     } 
     else{
        buttonState = LOW;
