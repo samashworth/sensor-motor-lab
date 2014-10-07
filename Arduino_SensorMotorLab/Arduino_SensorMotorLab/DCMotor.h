@@ -21,13 +21,13 @@ class DCMotor : public Motor {
     virtual void doProcessing();
     
     virtual MotorType getMotorType() { return DC_MOTOR; }
+    void HandleLeftMotorInterruptA();
+    void HandleLeftMotorInterruptB();
 
     
        
   private:
 		// If you want, you can put variables here so that you can remember data from one call to the next.
-		void HandleLeftMotorInterruptA();
-                void HandleLeftMotorInterruptB();
                 int ParseEncoder();
                 int computePID(int pwm_value, int Speed, int speed_reqd);
                 

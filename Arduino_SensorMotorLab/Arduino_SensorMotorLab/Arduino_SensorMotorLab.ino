@@ -78,8 +78,10 @@ void setup() {
         pinIds[3] = A4;
         pinIds[4] = 8;
         interruptIds[0] = 2;
-        interruptIds[1] = 3;
-        sonarSensor.initialize(5, pinIds, 0, interruptIds);
+        interruptIds[1] = 3;        
+        attachInterrupt(2, handleLeftMotorInterruptA, CHANGE);
+        attachInterrupt(3, handleLeftMotorInterruptB, CHANGE);
+        dcMotor.initialize(5, pinIds, 0, interruptIds);
         
         
         Messenger::printMessage("Initialize Pot", true);
@@ -272,4 +274,12 @@ int convertRelativeReadingToAngle(byte reading, Motor* motor, SensorMotorBinding
   //if (sensorMotorBinding->direction == CW)
     //angle *= -1;
   return angle;
+}
+
+void handleLeftMotorInterruptA() {
+  dcMotor.HandleLeftMotorInterruptA();
+}
+
+void handleLeftMotorInterruptB() {
+  dcMotor.HandleLeftMotorInterruptB();
 }
