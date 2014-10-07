@@ -89,7 +89,7 @@ void setup() {
         potentiometer.initialize(1, pinIds, 0, interruptIds);
         
         Messenger::printMessage("Initialize Button", true);
-        pinIds[0] = 3;
+        pinIds[0] = 4;
         button.initialize(1, pinIds, 0, interruptIds);
       
         Messenger::printMessage("Initialize Sonar", true);
