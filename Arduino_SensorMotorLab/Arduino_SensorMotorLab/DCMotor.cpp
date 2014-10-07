@@ -43,9 +43,9 @@ int DCMotor::getSpeed()
   int p2=0;
   Position=_LeftEncoderTicks*0.5;
   p1=_LeftEncoderTicks;
-  delay(100);
+  delay(10); //changed from 100 to 10 for speed test
   p2=_LeftEncoderTicks;
-  Speed=(p2-p1)*60/(720*0.1);
+  Speed=(p2-p1)*60/(720*0.01); //changed from .1 to .01 for speed test
   return Speed;
 }
 
@@ -71,7 +71,7 @@ void DCMotor::setAngle(int deg)
   analogWrite(motor_enable,255);
   while (abs(_LeftEncoderTicks*0.5)<abs(deg));
   analogWrite(motor_enable,0);
-  delay(20);
+  delay(20); //what is this for??
 }
 
 void DCMotor::doProcessing()
@@ -88,8 +88,6 @@ void DCMotor::doProcessing()
   analogWrite(motor_l2,0);
   }
   pwm_value=computePID(pwm_value,abs(Speed),abs(speed_reqd)); 
-  Serial.print(" pwm value: ");
-  Serial.print(pwm_value);
   analogWrite(motor_enable,pwm_value);
 
 }
@@ -138,11 +136,7 @@ int DCMotor::computePID(int pwm_value, int Speed, int speed_reqd)
   int speed_error;
   float pidterm;
   speed_error=abs(speed_reqd)-abs(Speed);
-  Serial.print(" error");
-  Serial.print(speed_error); 
   pidterm=kp*speed_error;
-  Serial.print(" pid term:");
-  Serial.print(pidterm);
   return constrain(pwm_value+int(pidterm),0,255);
 }
 
