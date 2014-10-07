@@ -5,7 +5,9 @@
 void StepperMotor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
     stepperPin = pinIds[0];
+    dirctionPin = pinIds[1];
     pinMode(stepperPin,OUTPUT);
+    pinMode(directionPin,OUTPUT);
     currentSpeed = 0;
     currentDelay = 0;
 }
@@ -23,8 +25,17 @@ int StepperMotor::getSpeed()
 
 void StepperMotor::setSpeed(int rpm)
 {
-  currentSpeed = rpm;
-  currentDelay = 150/rpm; // delay time in ms
+  if (rpm < 0) {
+    digitalWrite(directionPin,HIGH);
+    rpm = abs(rpm);
+    currentSpeed = rpm;
+    currentDelay = 150/rpm;// delay time in ms
+  }
+  else {
+    digitalWrite(directionPin,LOW);
+    currentSpeed = rpm;
+    currentDelay = 150/rpm; // delay time in ms
+  }
 }
 
 void StepperMotor::setAngle(int deg)
