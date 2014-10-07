@@ -4,19 +4,33 @@
 
 void Thermistor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
-  // TODO @Erin: Implement this.
+  // Nothing to do
 }
 
 float Thermistor::getReading()
 {
-  // TODO @Erin: Implement this.
-  return 0.0;
+  int units = analogRead(temperaturePin);
+  float temperature = units/2;
+  if (temperature > 30) {                        // check if the temperature reading is outside of your specified limits
+    temperature = 30;
+  }
+  if (temperature < 25) {
+    units = 25;
+  }
+  return temperature;
 }
 
 byte Thermistor::getRelativeReading()
 {
-  // TODO @Erin: Implement this.
-  return 0;
+  int units = analogRead(temperaturePin);
+  if (units > 61) {                        // check if the temperature reading is outside of your specified limits
+    units = 61;
+  }
+  if (units < 51) {
+    units = 51;
+  }
+  int relativeReading = 51*((units/2)-25);
+  return relativeReading;
 }
 
 SensorInfo Thermistor::getSensorInfo() 
@@ -24,14 +38,14 @@ SensorInfo Thermistor::getSensorInfo()
   // TODO @Erin: Implement this.
   SensorInfo SensorInfo;
   SensorInfo.units = CELSIUS;
-  SensorInfo.minReading = 0;
-  SensorInfo.maxReading = 0;
+  SensorInfo.minReading = 10;
+  SensorInfo.maxReading = 40;
   
   return SensorInfo;
 }
 
 void Thermistor::doProcessing()
 {
-  // TODO @Erin: Implement this.
+  // Nothing to do
 }
 

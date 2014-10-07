@@ -4,34 +4,62 @@
 
 void StepperMotor::initialize(int numPins, int pinIds[], int numInterrupts, int interruptIds[])
 {
-  // TODO @Erin: Implement this.
+    pinMode(stepperPin,OUTPUT);
+    currentSpeed = 0;
+    currentDelay = 0;
 }
 
 int StepperMotor::getMaxSpeed()
 {
-  // TODO @Erin: Implement this.
-  return 0;
+  return 75;
 }
 
 int StepperMotor::getSpeed()
 {
-  // TODO @Erin: Implement this.
+  return currentSpeed;
   return 0;
 }
 
 void StepperMotor::setSpeed(int rpm)
 {
-  // TODO @Erin: Implement this.
+  currentSpeed = rpm;
+  currentDelay = 150/rpm; // delay time in ms
 }
 
 void StepperMotor::setAngle(int deg)
 {
-  // TODO @Erin: Implement this.
+  int steps = deg*10/18;      // calculate the number of steps to rotate
+  setSpeed(6);                // always do the angle rotation at the slowest speed (6rpm = .1 rot/s)
+  for(int i=0;i<steps;i++) {  // rotate the appropriate number of steps
+    doProcessing();
+  }
+  setSpeed(0);
 }
 
 void StepperMotor::doProcessing()
 {
-  // TODO @Erin: Implement this.
+  if (currentSpeed == 0) {
+    // do nothing
+  }
+  else {
+      unsigned long startTime;
+      digitalWrite(stepperPin,HIGH);
+      // delay(currentDelay);
+      
+      startTime = millis();
+      while ( (millis() - startTime)  < currentDelay) {
+        // wait
+      }
+      
+      digitalWrite(stepperPin,LOW);
+      // delay(currentDelay);
+      
+      startTime = millis();
+      while ( (millis() - startTime)  < currentDelay) {
+        // wait
+      }  
+   }
+  
 }
 
 

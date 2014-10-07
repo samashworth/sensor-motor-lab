@@ -22,7 +22,7 @@ class Thermistor : public Sensor {
     
   private:
     // If you want, you can put variables here so that you can remember data from one call to the next.
-    byte testVar;
+    int temperaturePin = 0;
 };
 
 #endif /* ARDUINO_SENSORMOTORLAB_THERMISTOR_H */
