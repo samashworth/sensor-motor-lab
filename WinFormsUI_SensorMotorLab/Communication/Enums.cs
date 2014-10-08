@@ -77,7 +77,7 @@ namespace Communication
                 case SensorType.SONAR_SENSOR:
                     return "Sonar";
                 case SensorType.THERMISTOR:
-                    return "Thermistor";
+                    return "Temperature";
                 case SensorType.DUMMY_SENSOR:
                     return "Dummy";
                 default:
@@ -96,7 +96,7 @@ namespace Communication
                 case SensorType.SONAR_SENSOR:
                     return "Sonar Sensor";
                 case SensorType.THERMISTOR:
-                    return "Thermistor";
+                    return "Temperature Sensor";
                 case SensorType.DUMMY_SENSOR:
                     return "Dummy Sensor";
                 default:

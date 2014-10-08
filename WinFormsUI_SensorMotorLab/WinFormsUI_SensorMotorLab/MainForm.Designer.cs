@@ -32,30 +32,30 @@
         {
             this._tabControlMotor = new System.Windows.Forms.TabControl();
             this._tabPageDCMotor = new System.Windows.Forms.TabPage();
+            this._motorControlDC = new WinFormsUI_SensorMotorLab.MotorControl();
             this._tabPageServo = new System.Windows.Forms.TabPage();
+            this._servoMotorControl = new WinFormsUI_SensorMotorLab.ServoMotorControl();
             this._tabPageStepper = new System.Windows.Forms.TabPage();
+            this._motorControlStepper = new WinFormsUI_SensorMotorLab.MotorControl();
             this._tabPageDummyMotor = new System.Windows.Forms.TabPage();
+            this._motorControlDummy = new WinFormsUI_SensorMotorLab.MotorControl();
             this._tabControlSensor = new System.Windows.Forms.TabControl();
             this._tabPageForceSensor = new System.Windows.Forms.TabPage();
+            this._sensorControlForce = new WinFormsUI_SensorMotorLab.SensorControl();
             this._tabPagePotentiometer = new System.Windows.Forms.TabPage();
+            this._sensorControlPotentiometer = new WinFormsUI_SensorMotorLab.SensorControl();
             this._tabPageSonar = new System.Windows.Forms.TabPage();
+            this._sensorControlSonar = new WinFormsUI_SensorMotorLab.SensorControl();
             this._tabPageThermistor = new System.Windows.Forms.TabPage();
+            this._sensorControlThermistor = new WinFormsUI_SensorMotorLab.SensorControl();
             this._tabPageDummySensor = new System.Windows.Forms.TabPage();
+            this._sensorControlDummy = new WinFormsUI_SensorMotorLab.SensorControl();
             this._labelComPort = new System.Windows.Forms.Label();
             this._comboBoxPorts = new System.Windows.Forms.ComboBox();
             this._buttonConnect = new System.Windows.Forms.Button();
             this._labelConnectionStatus = new System.Windows.Forms.Label();
             this._buttonRefresh = new System.Windows.Forms.Button();
             this.debugControl1 = new WinFormsUI_SensorMotorLab.DebugControl();
-            this._sensorControlForce = new WinFormsUI_SensorMotorLab.SensorControl();
-            this._sensorControlPotentiometer = new WinFormsUI_SensorMotorLab.SensorControl();
-            this._sensorControlSonar = new WinFormsUI_SensorMotorLab.SensorControl();
-            this._sensorControlThermistor = new WinFormsUI_SensorMotorLab.SensorControl();
-            this._sensorControlDummy = new WinFormsUI_SensorMotorLab.SensorControl();
-            this._motorControlDC = new WinFormsUI_SensorMotorLab.MotorControl();
-            this._servoMotorControl = new WinFormsUI_SensorMotorLab.ServoMotorControl();
-            this._motorControlStepper = new WinFormsUI_SensorMotorLab.MotorControl();
-            this._motorControlDummy = new WinFormsUI_SensorMotorLab.MotorControl();
             this._tabControlMotor.SuspendLayout();
             this._tabPageDCMotor.SuspendLayout();
             this._tabPageServo.SuspendLayout();
@@ -92,6 +92,15 @@
             this._tabPageDCMotor.Text = "DC";
             this._tabPageDCMotor.UseVisualStyleBackColor = true;
             // 
+            // _motorControlDC
+            // 
+            this._motorControlDC.Location = new System.Drawing.Point(6, 6);
+            this._motorControlDC.Messenger = null;
+            this._motorControlDC.MotorType = Communication.MotorType.DC_MOTOR;
+            this._motorControlDC.Name = "_motorControlDC";
+            this._motorControlDC.Size = new System.Drawing.Size(301, 321);
+            this._motorControlDC.TabIndex = 0;
+            // 
             // _tabPageServo
             // 
             this._tabPageServo.Controls.Add(this._servoMotorControl);
@@ -102,6 +111,14 @@
             this._tabPageServo.TabIndex = 1;
             this._tabPageServo.Text = "Servo";
             this._tabPageServo.UseVisualStyleBackColor = true;
+            // 
+            // _servoMotorControl
+            // 
+            this._servoMotorControl.Location = new System.Drawing.Point(6, 6);
+            this._servoMotorControl.Messenger = null;
+            this._servoMotorControl.Name = "_servoMotorControl";
+            this._servoMotorControl.Size = new System.Drawing.Size(306, 298);
+            this._servoMotorControl.TabIndex = 0;
             // 
             // _tabPageStepper
             // 
@@ -114,6 +131,15 @@
             this._tabPageStepper.Text = "Stepper";
             this._tabPageStepper.UseVisualStyleBackColor = true;
             // 
+            // _motorControlStepper
+            // 
+            this._motorControlStepper.Location = new System.Drawing.Point(6, 6);
+            this._motorControlStepper.Messenger = null;
+            this._motorControlStepper.MotorType = Communication.MotorType.DC_MOTOR;
+            this._motorControlStepper.Name = "_motorControlStepper";
+            this._motorControlStepper.Size = new System.Drawing.Size(301, 317);
+            this._motorControlStepper.TabIndex = 1;
+            // 
             // _tabPageDummyMotor
             // 
             this._tabPageDummyMotor.Controls.Add(this._motorControlDummy);
@@ -124,6 +150,15 @@
             this._tabPageDummyMotor.TabIndex = 3;
             this._tabPageDummyMotor.Text = "Dummy";
             this._tabPageDummyMotor.UseVisualStyleBackColor = true;
+            // 
+            // _motorControlDummy
+            // 
+            this._motorControlDummy.Location = new System.Drawing.Point(6, 6);
+            this._motorControlDummy.Messenger = null;
+            this._motorControlDummy.MotorType = Communication.MotorType.DC_MOTOR;
+            this._motorControlDummy.Name = "_motorControlDummy";
+            this._motorControlDummy.Size = new System.Drawing.Size(301, 317);
+            this._motorControlDummy.TabIndex = 2;
             // 
             // _tabControlSensor
             // 
@@ -149,6 +184,16 @@
             this._tabPageForceSensor.Text = "Force";
             this._tabPageForceSensor.UseVisualStyleBackColor = true;
             // 
+            // _sensorControlForce
+            // 
+            this._sensorControlForce.Location = new System.Drawing.Point(6, 6);
+            this._sensorControlForce.Messenger = null;
+            this._sensorControlForce.Name = "_sensorControlForce";
+            this._sensorControlForce.SensorType = Communication.SensorType.FORCE_SENSOR;
+            this._sensorControlForce.Size = new System.Drawing.Size(324, 93);
+            this._sensorControlForce.TabIndex = 0;
+            this._sensorControlForce.Units = "newtons";
+            // 
             // _tabPagePotentiometer
             // 
             this._tabPagePotentiometer.Controls.Add(this._sensorControlPotentiometer);
@@ -159,6 +204,16 @@
             this._tabPagePotentiometer.TabIndex = 1;
             this._tabPagePotentiometer.Text = "Pot";
             this._tabPagePotentiometer.UseVisualStyleBackColor = true;
+            // 
+            // _sensorControlPotentiometer
+            // 
+            this._sensorControlPotentiometer.Location = new System.Drawing.Point(6, 6);
+            this._sensorControlPotentiometer.Messenger = null;
+            this._sensorControlPotentiometer.Name = "_sensorControlPotentiometer";
+            this._sensorControlPotentiometer.SensorType = Communication.SensorType.POTENTIOMETER;
+            this._sensorControlPotentiometer.Size = new System.Drawing.Size(324, 93);
+            this._sensorControlPotentiometer.TabIndex = 0;
+            this._sensorControlPotentiometer.Units = "degrees";
             // 
             // _tabPageSonar
             // 
@@ -171,6 +226,16 @@
             this._tabPageSonar.Text = "Sonar";
             this._tabPageSonar.UseVisualStyleBackColor = true;
             // 
+            // _sensorControlSonar
+            // 
+            this._sensorControlSonar.Location = new System.Drawing.Point(6, 6);
+            this._sensorControlSonar.Messenger = null;
+            this._sensorControlSonar.Name = "_sensorControlSonar";
+            this._sensorControlSonar.SensorType = Communication.SensorType.SONAR_SENSOR;
+            this._sensorControlSonar.Size = new System.Drawing.Size(324, 93);
+            this._sensorControlSonar.TabIndex = 0;
+            this._sensorControlSonar.Units = "centimeters";
+            // 
             // _tabPageThermistor
             // 
             this._tabPageThermistor.Controls.Add(this._sensorControlThermistor);
@@ -179,8 +244,18 @@
             this._tabPageThermistor.Padding = new System.Windows.Forms.Padding(3);
             this._tabPageThermistor.Size = new System.Drawing.Size(564, 122);
             this._tabPageThermistor.TabIndex = 3;
-            this._tabPageThermistor.Text = "Thermistor";
+            this._tabPageThermistor.Text = "Temperature";
             this._tabPageThermistor.UseVisualStyleBackColor = true;
+            // 
+            // _sensorControlThermistor
+            // 
+            this._sensorControlThermistor.Location = new System.Drawing.Point(6, 6);
+            this._sensorControlThermistor.Messenger = null;
+            this._sensorControlThermistor.Name = "_sensorControlThermistor";
+            this._sensorControlThermistor.SensorType = Communication.SensorType.THERMISTOR;
+            this._sensorControlThermistor.Size = new System.Drawing.Size(324, 93);
+            this._sensorControlThermistor.TabIndex = 0;
+            this._sensorControlThermistor.Units = "celsius";
             // 
             // _tabPageDummySensor
             // 
@@ -192,6 +267,16 @@
             this._tabPageDummySensor.TabIndex = 4;
             this._tabPageDummySensor.Text = "Dummy";
             this._tabPageDummySensor.UseVisualStyleBackColor = true;
+            // 
+            // _sensorControlDummy
+            // 
+            this._sensorControlDummy.Location = new System.Drawing.Point(6, 6);
+            this._sensorControlDummy.Messenger = null;
+            this._sensorControlDummy.Name = "_sensorControlDummy";
+            this._sensorControlDummy.SensorType = Communication.SensorType.DUMMY_SENSOR;
+            this._sensorControlDummy.Size = new System.Drawing.Size(324, 93);
+            this._sensorControlDummy.TabIndex = 0;
+            this._sensorControlDummy.Units = "units";
             // 
             // _labelComPort
             // 
@@ -247,91 +332,6 @@
             this.debugControl1.Name = "debugControl1";
             this.debugControl1.Size = new System.Drawing.Size(572, 310);
             this.debugControl1.TabIndex = 2;
-            // 
-            // _sensorControlForce
-            // 
-            this._sensorControlForce.Location = new System.Drawing.Point(6, 6);
-            this._sensorControlForce.Messenger = null;
-            this._sensorControlForce.Name = "_sensorControlForce";
-            this._sensorControlForce.SensorType = Communication.SensorType.FORCE_SENSOR;
-            this._sensorControlForce.Size = new System.Drawing.Size(324, 93);
-            this._sensorControlForce.TabIndex = 0;
-            this._sensorControlForce.Units = "newtons";
-            // 
-            // _sensorControlPotentiometer
-            // 
-            this._sensorControlPotentiometer.Location = new System.Drawing.Point(6, 6);
-            this._sensorControlPotentiometer.Messenger = null;
-            this._sensorControlPotentiometer.Name = "_sensorControlPotentiometer";
-            this._sensorControlPotentiometer.SensorType = Communication.SensorType.POTENTIOMETER;
-            this._sensorControlPotentiometer.Size = new System.Drawing.Size(324, 93);
-            this._sensorControlPotentiometer.TabIndex = 0;
-            this._sensorControlPotentiometer.Units = "ohms";
-            // 
-            // _sensorControlSonar
-            // 
-            this._sensorControlSonar.Location = new System.Drawing.Point(6, 6);
-            this._sensorControlSonar.Messenger = null;
-            this._sensorControlSonar.Name = "_sensorControlSonar";
-            this._sensorControlSonar.SensorType = Communication.SensorType.SONAR_SENSOR;
-            this._sensorControlSonar.Size = new System.Drawing.Size(324, 93);
-            this._sensorControlSonar.TabIndex = 0;
-            this._sensorControlSonar.Units = "centimeters";
-            // 
-            // _sensorControlThermistor
-            // 
-            this._sensorControlThermistor.Location = new System.Drawing.Point(6, 6);
-            this._sensorControlThermistor.Messenger = null;
-            this._sensorControlThermistor.Name = "_sensorControlThermistor";
-            this._sensorControlThermistor.SensorType = Communication.SensorType.THERMISTOR;
-            this._sensorControlThermistor.Size = new System.Drawing.Size(324, 93);
-            this._sensorControlThermistor.TabIndex = 0;
-            this._sensorControlThermistor.Units = "celsius";
-            // 
-            // _sensorControlDummy
-            // 
-            this._sensorControlDummy.Location = new System.Drawing.Point(6, 6);
-            this._sensorControlDummy.Messenger = null;
-            this._sensorControlDummy.Name = "_sensorControlDummy";
-            this._sensorControlDummy.SensorType = Communication.SensorType.DUMMY_SENSOR;
-            this._sensorControlDummy.Size = new System.Drawing.Size(324, 93);
-            this._sensorControlDummy.TabIndex = 0;
-            this._sensorControlDummy.Units = "units";
-            // 
-            // _motorControlDC
-            // 
-            this._motorControlDC.Location = new System.Drawing.Point(6, 6);
-            this._motorControlDC.Messenger = null;
-            this._motorControlDC.MotorType = Communication.MotorType.DC_MOTOR;
-            this._motorControlDC.Name = "_motorControlDC";
-            this._motorControlDC.Size = new System.Drawing.Size(301, 321);
-            this._motorControlDC.TabIndex = 0;
-            // 
-            // _servoMotorControl
-            // 
-            this._servoMotorControl.Location = new System.Drawing.Point(6, 6);
-            this._servoMotorControl.Messenger = null;
-            this._servoMotorControl.Name = "_servoMotorControl";
-            this._servoMotorControl.Size = new System.Drawing.Size(306, 298);
-            this._servoMotorControl.TabIndex = 0;
-            // 
-            // _motorControlStepper
-            // 
-            this._motorControlStepper.Location = new System.Drawing.Point(6, 6);
-            this._motorControlStepper.Messenger = null;
-            this._motorControlStepper.MotorType = Communication.MotorType.DC_MOTOR;
-            this._motorControlStepper.Name = "_motorControlStepper";
-            this._motorControlStepper.Size = new System.Drawing.Size(301, 317);
-            this._motorControlStepper.TabIndex = 1;
-            // 
-            // _motorControlDummy
-            // 
-            this._motorControlDummy.Location = new System.Drawing.Point(6, 6);
-            this._motorControlDummy.Messenger = null;
-            this._motorControlDummy.MotorType = Communication.MotorType.DC_MOTOR;
-            this._motorControlDummy.Name = "_motorControlDummy";
-            this._motorControlDummy.Size = new System.Drawing.Size(301, 317);
-            this._motorControlDummy.TabIndex = 2;
             // 
             // MainForm
             // 

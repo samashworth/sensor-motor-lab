@@ -49,14 +49,12 @@
             this._buttonAngleSet = new System.Windows.Forms.Button();
             this._buttonSpeedSet = new System.Windows.Forms.Button();
             this._labelDegrees = new System.Windows.Forms.Label();
-            this._labelRpm1 = new System.Windows.Forms.Label();
             this._textBoxSetAngle = new System.Windows.Forms.TextBox();
             this._labelSetAngle = new System.Windows.Forms.Label();
             this._textBoxSetSpeed = new System.Windows.Forms.TextBox();
             this._labelSetSpeed = new System.Windows.Forms.Label();
             this._labelSpeed = new System.Windows.Forms.Label();
             this._textBoxSpeed = new System.Windows.Forms.TextBox();
-            this._labelRpm2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -246,7 +244,6 @@
             this._groupBoxManual.Controls.Add(this._buttonAngleSet);
             this._groupBoxManual.Controls.Add(this._buttonSpeedSet);
             this._groupBoxManual.Controls.Add(this._labelDegrees);
-            this._groupBoxManual.Controls.Add(this._labelRpm1);
             this._groupBoxManual.Controls.Add(this._textBoxSetAngle);
             this._groupBoxManual.Controls.Add(this._labelSetAngle);
             this._groupBoxManual.Controls.Add(this._textBoxSetSpeed);
@@ -286,15 +283,6 @@
             this._labelDegrees.Size = new System.Drawing.Size(45, 13);
             this._labelDegrees.TabIndex = 6;
             this._labelDegrees.Text = "degrees";
-            // 
-            // _labelRpm1
-            // 
-            this._labelRpm1.AutoSize = true;
-            this._labelRpm1.Location = new System.Drawing.Point(116, 23);
-            this._labelRpm1.Name = "_labelRpm1";
-            this._labelRpm1.Size = new System.Drawing.Size(24, 13);
-            this._labelRpm1.TabIndex = 5;
-            this._labelRpm1.Text = "rpm";
             // 
             // _textBoxSetAngle
             // 
@@ -345,20 +333,10 @@
             this._textBoxSpeed.Size = new System.Drawing.Size(54, 20);
             this._textBoxSpeed.TabIndex = 14;
             // 
-            // _labelRpm2
-            // 
-            this._labelRpm2.AutoSize = true;
-            this._labelRpm2.Location = new System.Drawing.Point(156, 288);
-            this._labelRpm2.Name = "_labelRpm2";
-            this._labelRpm2.Size = new System.Drawing.Size(24, 13);
-            this._labelRpm2.TabIndex = 7;
-            this._labelRpm2.Text = "rpm";
-            // 
             // MotorControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._labelRpm2);
             this.Controls.Add(this._textBoxSpeed);
             this.Controls.Add(this._labelSpeed);
             this.Controls.Add(this._groupBoxManual);
@@ -408,9 +386,7 @@
         private System.Windows.Forms.Label _labelSetSpeed;
         private System.Windows.Forms.Label _labelSpeed;
         private System.Windows.Forms.Label _labelDegrees;
-        private System.Windows.Forms.Label _labelRpm1;
         private System.Windows.Forms.TextBox _textBoxSpeed;
-        private System.Windows.Forms.Label _labelRpm2;
         private System.Windows.Forms.Button _buttonAngleSet;
         private System.Windows.Forms.Button _buttonSpeedSet;
         private System.Windows.Forms.Button _buttonSensorControlSet;
