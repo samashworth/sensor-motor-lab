@@ -20,7 +20,6 @@ byte Potentiometer::getRelativeReading()
 
 SensorInfo Potentiometer::getSensorInfo() 
 {
-  // TODO @Sonali: Implement this.
   SensorInfo SensorInfo;
   SensorInfo.units = CENTIMETER;
   SensorInfo.minReading = 0;

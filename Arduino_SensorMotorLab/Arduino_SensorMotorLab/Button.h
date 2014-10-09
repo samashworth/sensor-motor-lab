@@ -26,8 +26,6 @@ class Button {
     */
     boolean pressOccurred();
     
-    boolean debounce(boolean last, int button);
-
     private:
     int button;
     boolean buttonState;

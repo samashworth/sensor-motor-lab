@@ -15,7 +15,6 @@ boolean Button::pressOccurred()
 {
   boolean currentButtonState = digitalRead(button);
   if(currentButtonState == HIGH && lastButtonState == LOW){
-      //currentButtonState = debounce(lastButtonState, button);
       delay(100);
       buttonState = HIGH;
       lastButtonState = currentButtonState;
@@ -30,15 +29,6 @@ boolean Button::pressOccurred()
  
 }
 
-boolean Button::debounce(boolean last, int button)
-{
-  boolean current = digitalRead(button);
-  if (last != current)
-  {
-    delay(100);
-    current = digitalRead(button);
-  }
-  return current;
-}
+
 
 
