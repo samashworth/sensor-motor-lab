@@ -2,6 +2,7 @@
 #define ARDUINO_SENSORMOTORLAB_DCMOTOR_H
 
 #include "Motor.h"
+#include "Messenger.h"
 
 /*
 Represents a DC motor.

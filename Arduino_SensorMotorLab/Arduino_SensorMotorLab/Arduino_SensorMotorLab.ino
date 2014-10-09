@@ -77,11 +77,11 @@ void setup() {
         pinIds[2] = A3;
         pinIds[3] = A4;
         pinIds[4] = 8;
-        interruptIds[0] = 2;
-        interruptIds[1] = 3;        
-        attachInterrupt(2, handleLeftMotorInterruptA, CHANGE);
-        attachInterrupt(3, handleLeftMotorInterruptB, CHANGE);
-        dcMotor.initialize(5, pinIds, 0, interruptIds);
+        interruptIds[0] = 0;
+        interruptIds[1] = 1;        
+        attachInterrupt(0, handleLeftMotorInterruptA, CHANGE);
+        attachInterrupt(1, handleLeftMotorInterruptB, CHANGE);
+        dcMotor.initialize(5, pinIds, 2, interruptIds);
         
         
         Messenger::printMessage("Initialize Pot", true);
